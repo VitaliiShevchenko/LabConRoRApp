@@ -1,25 +1,24 @@
+# ## Welcome to the LabConRoRApp
+Control equipment through the site.
 
-# README
-
-# LabConRoRApp
-Simple project using Ruby On Rails for controlling equipments through RS485 on the backend and displaying the recieved information on the dashboard  in the current browser
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Introduction
+Simple project using Ruby On Rails for controlling equipments through RS485 on the backend and displaying the recieved information on the dashboard in the current browser.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 3.4.1
 
-* System dependencies
+* Rails version 8.0.1
 
-* Configuration
+* System dependencies:
 
-* Database creation
+* Configuration:
 
-* Database initialization
+* Database creation: `$ brew instal postgresql@14`
 
-* How to run the test suite
+* Database initialization: `$ brew services start postgresql@14`, `$rails db:create`
+
+* How to run the test suite: 
 
 * Services (job queues, cache servers, search engines, etc.)
 
