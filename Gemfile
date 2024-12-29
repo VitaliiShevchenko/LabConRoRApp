@@ -15,6 +15,8 @@ gem "puma", ">= 5.0"
 gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
+# This gems integrates the C implementation of SASS, LibSASS into the asset pipeline.
+gem 'sassc-rails', '~> 2.1', '>= 2.1.2'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 # The original asset pipeline for Rails
