@@ -2,6 +2,9 @@ source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.2"
+
+# Plugin for generation administration style interfaces
+gem 'activeadmin', '~> 3.2', '>= 3.2.5'
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.9', '>= 4.9.4'
 # Use postgresql as the database for Active Record
