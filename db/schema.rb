@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_30_131519) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_30_184353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_131519) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "brands", force: :cascade do |t|
+    t.string "name"
+    t.string "desc"
+    t.string "intended_use"
+    t.bigint "creator_id", null: false
+    t.float "calculated_cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_brands_on_creator_id"
+  end
+
   create_table "coil_registers", force: :cascade do |t|
     t.string "name"
     t.integer "address"
@@ -60,6 +71,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_131519) do
     t.string "product_list"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "creators", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "position"
+    t.string "order_description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_creators_on_user_id"
   end
 
   create_table "handling_registers", force: :cascade do |t|
@@ -108,5 +128,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_131519) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "brands", "creators"
+  add_foreign_key "creators", "users"
   add_foreign_key "materials", "suppliers"
 end
