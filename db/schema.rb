@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_30_213118) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_30_221126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -137,6 +137,30 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_213118) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tests", force: :cascade do |t|
+    t.bigint "brand_receipt_id", null: false
+    t.bigint "creator_id", null: false
+    t.integer "total_time"
+    t.float "temperature"
+    t.float "torque1"
+    t.integer "time1"
+    t.float "torque2"
+    t.integer "time2"
+    t.float "torque3"
+    t.integer "time3"
+    t.float "torque4"
+    t.integer "time4"
+    t.integer "melting_time"
+    t.integer "start_melting"
+    t.integer "end_melting"
+    t.float "total_energy"
+    t.float "te_persec"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brand_receipt_id"], name: "index_tests_on_brand_receipt_id"
+    t.index ["creator_id"], name: "index_tests_on_creator_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -155,4 +179,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_213118) do
   add_foreign_key "materials", "suppliers"
   add_foreign_key "receipts", "brand_receipts"
   add_foreign_key "receipts", "materials"
+  add_foreign_key "tests", "brand_receipts"
+  add_foreign_key "tests", "creators"
 end
