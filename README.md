@@ -2,13 +2,13 @@
 Control equipment through the site.
 
 ### Introduction
-Simple project using Ruby On Rails for controlling equipments through RS485 on the backend and displaying the recieved information on the dashboard in the current browser.
+Project using Ruby On Rails for controlling equipments through RS485 on the backend and displaying the recieved information on the dashboard in the current browser.
 
 Things you may want to cover:
 
-* Ruby version 3.4.1
+* Ruby version 3.2.2
 
-* Rails version 8.0.1
+* Rails version 7.2.2
 
 * System dependencies:
 

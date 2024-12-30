@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_30_221126) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_30_224156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -91,6 +91,24 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_221126) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_creators_on_user_id"
+  end
+
+  create_table "data_flows", force: :cascade do |t|
+    t.float "torque"
+    t.integer "speed"
+    t.integer "mold_temp"
+    t.integer "material_temp"
+    t.integer "testing_time"
+    t.integer "voltage"
+    t.float "current"
+    t.float "frequency"
+    t.float "power"
+    t.float "energy"
+    t.integer "alarm"
+    t.bigint "test_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["test_id"], name: "index_data_flows_on_test_id"
   end
 
   create_table "handling_registers", force: :cascade do |t|
@@ -176,6 +194,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_221126) do
   add_foreign_key "brand_receipts", "brands"
   add_foreign_key "brands", "creators"
   add_foreign_key "creators", "users"
+  add_foreign_key "data_flows", "tests"
   add_foreign_key "materials", "suppliers"
   add_foreign_key "receipts", "brand_receipts"
   add_foreign_key "receipts", "materials"
