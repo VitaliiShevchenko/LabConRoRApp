@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_30_184353) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_30_212029) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,6 +39,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_184353) do
     t.string "name"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "brand_receipts", force: :cascade do |t|
+    t.bigint "brand_id", null: false
+    t.integer "hardnessShA"
+    t.integer "hardnessShD"
+    t.float "density"
+    t.integer "receipt_num"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brand_id"], name: "index_brand_receipts_on_brand_id"
   end
 
   create_table "brands", force: :cascade do |t|
@@ -128,6 +139,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_184353) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "brand_receipts", "brands"
   add_foreign_key "brands", "creators"
   add_foreign_key "creators", "users"
   add_foreign_key "materials", "suppliers"
