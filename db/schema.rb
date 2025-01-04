@@ -88,6 +88,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_224156) do
     t.bigint "user_id", null: false
     t.string "position"
     t.string "order_description"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_creators_on_user_id"
