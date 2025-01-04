@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # Welcome page
+  resources :welcome, only: [:index]
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -16,4 +18,5 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   root to: "admin/dashboard#index"
+  get '*path', to: redirect('/admin/dashboard')
 end
