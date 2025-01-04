@@ -5,6 +5,8 @@ gem "rails", "~> 7.2"
 
 # Plugin for generation administration style interfaces
 gem 'activeadmin', '~> 3.2', '>= 3.2.5'
+# Gem for handling Serial port (USB)
+gem 'ccutrer-serialport'
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.9', '>= 4.9.4'
 # Use postgresql as the database for Active Record
@@ -13,6 +15,8 @@ gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
+# RModBus - free implementation of protocol ModBus
+gem 'rmodbus', '~> 2.1', '>= 2.1.3'
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 # This gems integrates the C implementation of SASS, LibSASS into the asset pipeline.
@@ -66,6 +70,5 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
+  # gem "simplecov", require: false
 end
