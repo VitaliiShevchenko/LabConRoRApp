@@ -6,7 +6,7 @@ ActiveAdmin.register User do
   actions :all, except: [ :new, :edit, :view, :create, :update ]
 
   index do
-    column :id
+    id_column
     column :email
     column "Fullname" do |user|
       creator = Creator.find_by(user_id: user.id)
