@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        display: flex;
+        height: 100vh; /* Takes up the entire height of the window */
+    }
+
+    .left_panel {
+        width: 125px;
+        background-color: #90ee90;
+        text-align: center;
+    }
+
+    .left_panel .circle {
+        width: 35px;
+        height: 35px;
+        background: linear-gradient(green, lime);
+        border-radius: 50%;
+        border: 4px solid #000;
+        margin: 30px auto;
+        margin-bottom: 35px;
+    }
+
+    .left_panel .btn-impo {
+        width: 75px;
+        height: 75px;
+        margin-bottom: 5px;
+        box-shadow: 2px 2px 7px black;
+        transition: .3s;
+    }
+
+    .left_panel .btn-impo:hover {
+        outline: none;
+        box-shadow: none;
+    }
+
+    .right_panel {
+        width: 125px;
+        background-color: #90ee90;
+        text-align: center;
+        padding-top: 100px;
+    }
+
+    .right_panel .btn-impo {
+        width: 75px;
+        height: 75px;
+        margin-bottom: 5px;
+        box-shadow: 2px 2px 7px black;
+        transition: .3s;
+    }
+
+    .right_panel .btn-impo:hover {
+        outline: none;
+        box-shadow: none;
+    }
+
+    .right-container {
+        display: grid;
+        grid-template-rows: 50px 1fr; /* 2 is 100px high, 3 will take up the rest of the space */
+        flex-grow: 1; /* Takes up all the space on the right */
+    }
+
+    .upper_panel {
+        display: flex;
+        flex-wrap: wrap; /* Allows you to move to a new line */
+        background-color: #add8e6;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .main_panel {
+        background-color: #eee990;
+        width: 100%;
+        height: 100%;
+        border: 1px solid black;
+    }
+
+    .lower_panel {
+        display: flex;
+        gap: 63px;
+        flex-wrap: wrap; /* Allows you to move to a new line */
+        background-color: #add8e6;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+    }
+
+    .lower_panel table {
+        border-collapse: collapse;
+        border: 2px solid rgb(140 140 140);
+    }
+
+    .lower_panel table th, td {
+        border: 1px solid rgb(160 160 160);
+        padding: 8px 10px;
+    }
+    </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="left_panel">
+    <div class="circle"></div>
+    <button class="btn-impo">START</button>
+    <button class="btn-impo">STOP</button>
+    <button class="btn-impo"><img src="Assets/arrow-up.png" width="50"></button>
+    <button class="btn-impo"><img src="Assets/arrow-up.png" width="50" style="rotate: 180deg;"></button>
+    <button class="btn-impo">>0<</button>
+    <button class="btn-impo">PRINTER</button>
+  </div>
+  <div class="right-container">
+    <div class="upper_panel">
+        <div class="box">
+            <label>Date</label>
+            <input disabled>
+        </div>
+        <div class="box">
+            <label>Time Of Trial, s</label>
+            <input disabled>
+        </div>
+        <div class="box">
+            <label>Material Brand</label>
+            <input disabled>
+        </div>
+        <div class="box">
+            <label>Load, N</label>
+            <input disabled>
+        </div>
+        <div class="box">
+            <label>Speed, min <sup>-1</sup></label>
+            <input disabled>
+        </div>
+    </div>
+    <div class="main_panel">
+
+    </div>
+    <div class="lower_panel">
+        <table>
+            <thead>
+                <tr>
+                    <th>Torque 1</th>
+                    <th>Time 1, s</th>
+                    <th>Torque 2</th>
+                    <th>Time 2, s</th>
+                    <th>Torque 3</th>
+                    <th>Time 3, s</th>
+                    <th>Torque 4</th>
+                    <th>Time 4, s</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5023</td>
+                    <td>123</td>
+                    <td>2312</td>
+                    <td>12</td>
+                    <td>1231</td>
+                    <td>12</td>
+                    <td>1234</td>
+                    <td>12</td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Voltage, V</th>
+                    <th>Curent, A</th>
+                    <th>Frequency, HZ</th>
+                    <th>Power, Vt</th>
+                    <th>Enegry, kWh</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5023</td>
+                    <td>123</td>
+                    <td>2312</td>
+                    <td>12</td>
+                    <td>1231</td>
+                </tr>
+            </tbody>
+        </table> 
+    </div>
+  </div>
+  <div class="right_panel">
+    <button class="btn-impo">Test</button>
+    <button class="btn-impo">Open DB</button>
+    <button class="btn-impo">Settings</button>
+    <button class="btn-impo">?</button>
+    <button class="btn-impo">Exit</button>
+  </div>
+</div>
+
+</body>
+</html>
