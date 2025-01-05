@@ -1,19 +1,34 @@
 ActiveAdmin.register User do
+  permit_params :id, :email, :reset_password_sent_at, :remember_created_at, :created_at, :updated_at
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  # permit_params :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  config.batch_actions = false
+
+  actions :all, except: [ :new, :edit, :view, :create, :update ]
+
+  index do
+    id_column
+    column :email
+    column "Fullname" do |user|
+      creator = Creator.find_by(user_id: user.id)
+      creator ? "#{creator.first_name} #{creator.last_name} (#{creator.position})" : "Available to create a Creator"
+    end
+    column :reset_password_sent_at
+    column :remember_created_at
+    column :updated_at
+    column :created_at
+    actions
+  end
+
+  controller do
+    def destroy
+      if Creator.find_by(user_id: params[:id])
+        flash[:error] = "Error occured while deleting User because Creator was created on its ID"
+      else
+        User.find(params[:id]).destroy
+      end
+      redirect_to admin_users_path
+    end
+  end
 
   filter :email
 end
