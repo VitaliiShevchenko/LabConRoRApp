@@ -67,7 +67,7 @@
 
     .right-container {
         display: grid;
-        grid-template-rows: 100px 1fr; /* div2 висотою 100px, div3 займе залишок простору */
+        grid-template-rows: 50px 1fr; /* div2 висотою 100px, div3 займе залишок простору */
         flex-grow: 1; /* Займає весь простір праворуч */
     }
 
@@ -90,6 +90,7 @@
 
     .lower_panel {
         display: flex;
+        gap: 63px;
         flex-wrap: wrap; /* Дозволяє переходити на новий рядок */
         background-color: #add8e6;
         width: 100%; /* Займає всю ширину */
@@ -113,41 +114,33 @@
 <div class="container">
   <div class="left_panel">
     <div class="circle"></div>
-    <button class="btn-impo">ПУСК</button>
-    <button class="btn-impo">СТОП</button>
+    <button class="btn-impo">START</button>
+    <button class="btn-impo">STOP</button>
     <button class="btn-impo"><img src="Assets/arrow-up.png" width="50"></button>
     <button class="btn-impo"><img src="Assets/arrow-up.png" width="50" style="rotate: 180deg;"></button>
     <button class="btn-impo">>0<</button>
-    <button class="btn-impo">Прінтер</button>
+    <button class="btn-impo">PRINTER</button>
   </div>
   <div class="right-container">
     <div class="upper_panel">
         <div class="box">
-            <label>Дата</label>
+            <label>Date</label>
             <input disabled>
         </div>
         <div class="box">
-            <label>Час випробування, C</label>
+            <label>Time Of Trial, s</label>
             <input disabled>
         </div>
         <div class="box">
-            <label>Марка Матеріалу</label>
+            <label>Material Brand</label>
             <input disabled>
         </div>
         <div class="box">
-            <label>Навантаження, H</label>
+            <label>Load, N</label>
             <input disabled>
         </div>
         <div class="box">
-            <label>Відовження, %</label>
-            <input disabled>
-        </div>
-        <div class="box">
-            <label>Переміщення, мм</label>
-            <input disabled>
-        </div>
-        <div class="box">
-            <label>Швидкість мм/хв</label>
+            <label>Speed, min <sup>-1</sup></label>
             <input disabled>
         </div>
     </div>
@@ -158,33 +151,57 @@
         <table>
             <thead>
                 <tr>
-                    <th>Порцелянова та екологічна</th>
-                    <th>Порцелянова та екологічна</th>
-                    <th>Порцелянова та екологічна</th>
-                    <th>Порцелянова та екологічна</th>
-                    <th>Порцелянова та екологічна</th>
-                    <th>Порцелянова та екологічна</th>
+                    <th>Torque 1</th>
+                    <th>Time 1, s</th>
+                    <th>Torque 2</th>
+                    <th>Time 2, s</th>
+                    <th>Torque 3</th>
+                    <th>Time 3, s</th>
+                    <th>Torque 4</th>
+                    <th>Time 4, s</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Так</td>
-                    <td>Ні</td>
-                    <td>Так</td>
-                    <td>Так</td>
-                    <td>Ні</td>
-                    <td>Ні</td>
+                    <td>5023</td>
+                    <td>123</td>
+                    <td>2312</td>
+                    <td>12</td>
+                    <td>1231</td>
+                    <td>12</td>
+                    <td>1234</td>
+                    <td>12</td>
                 </tr>
             </tbody>
         </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Voltage, V</th>
+                    <th>Curent, A</th>
+                    <th>Frequency, HZ</th>
+                    <th>Power, Vt</th>
+                    <th>Enegry, kWh</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5023</td>
+                    <td>123</td>
+                    <td>2312</td>
+                    <td>12</td>
+                    <td>1231</td>
+                </tr>
+            </tbody>
+        </table> 
     </div>
   </div>
   <div class="right_panel">
-    <button class="btn-impo">Тест</button>
-    <button class="btn-impo">Відкрити БД</button>
-    <button class="btn-impo">Настройки</button>
+    <button class="btn-impo">Test</button>
+    <button class="btn-impo">Open DB</button>
+    <button class="btn-impo">Settings</button>
     <button class="btn-impo">?</button>
-    <button class="btn-impo">Вихід</button>
+    <button class="btn-impo">Exit</button>
   </div>
 </div>
 
