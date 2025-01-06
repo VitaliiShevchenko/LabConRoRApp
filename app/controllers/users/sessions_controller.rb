@@ -19,12 +19,12 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def verify_existence_creator
     creator = Creator.find_by(user_id: User.where(email: sign_in_params[:email]).first&.id)
-    flash[:notice] = "Creator not found" if creator.nil?
+    flash[:notice] = "You haven't permission for authentication. Kindly contact the administrator" if creator.nil?
     redirect_to new_user_session_path    if creator.nil?
   end
 

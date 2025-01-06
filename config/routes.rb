@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   # Welcome page
-  resources :welcome, only: [:index]
+  root to: "welcome#index"
 
   devise_for :users, controllers: {
          sessions: 'users/sessions',
         passwords: 'users/passwords',
-    confirmations: 'users/confirmations'
+    confirmations: 'users/confirmations',
+    registrations: 'users/registrations',
   }
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -24,6 +25,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  root to: "welcome#index"
   get '*path', to: redirect('/users/sign_in')
 end
