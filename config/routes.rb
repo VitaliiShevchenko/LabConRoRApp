@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
   # Welcome page
-  resources :welcome, only: [:index]
-  devise_for :users
+  root to: "welcome#index"
+
+  devise_for :users, controllers: {
+         sessions: 'users/sessions',
+        passwords: 'users/passwords',
+    confirmations: 'users/confirmations',
+    registrations: 'users/registrations',
+  }
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -17,6 +25,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  root to: "admin/dashboard#index"
-  get '*path', to: redirect('/admin/dashboard')
+  get '*path', to: redirect('/users/sign_in')
 end
