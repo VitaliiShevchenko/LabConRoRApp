@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   root to: "admin/dashboard#index"
+  get to: "main#index"
   get '*path', to: redirect('/admin/dashboard')
 end
