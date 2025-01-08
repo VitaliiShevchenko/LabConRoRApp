@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  get to: "main#index"
+  # EXAMINATIONS CONTROLLER
+  resources :examinations
+
   get '*path', to: redirect('/admin/dashboard')
 end

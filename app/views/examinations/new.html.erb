@@ -9,11 +9,29 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        scroll-margin-inline: 0px;
+    }
+    body , html{
+        height: 100vh;
+        margin-top: -9px;
+    }
+
+    input, td{
+        background-color: white;
+    }
+
+    table thead, th {
+        background: #ffff00 !important;
     }
 
     .container {
         display: flex;
         height: 100vh; /* Takes up the entire height of the window */
+        width: 100vw;
+    }
+
+    .box input{
+        width: 100px;
     }
 
     .left_panel {
@@ -35,7 +53,7 @@
     .left_panel .btn-impo {
         width: 75px;
         height: 75px;
-        margin-bottom: 5px;
+        margin: 25px 0;
         box-shadow: 2px 2px 7px black;
         transition: .3s;
     }
@@ -55,7 +73,7 @@
     .right_panel .btn-impo {
         width: 75px;
         height: 75px;
-        margin-bottom: 5px;
+        margin: 25px 0;
         box-shadow: 2px 2px 7px black;
         transition: .3s;
     }
@@ -74,11 +92,12 @@
     .upper_panel {
         display: flex;
         flex-wrap: wrap; /* Allows you to move to a new line */
-        background-color: #add8e6;
+        background-color: #90ee90;
         width: 100%;
         height: 100%;
         padding: 10px;
         gap: 10px;
+        font-size: 16px;
     }
 
     .main_panel {
@@ -91,8 +110,8 @@
     .lower_panel {
         display: flex;
         gap: 63px;
-        flex-wrap: wrap; /* Allows you to move to a new line */
-        background-color: #add8e6;
+        flex-wrap: nowrap; /* Allows you to move to a new line */
+        background-color: #90ee90;
         width: 100%;
         height: 100%;
         padding: 10px;
@@ -104,8 +123,12 @@
     }
 
     .lower_panel table th, td {
+        width: 150px;
         border: 1px solid rgb(160 160 160);
         padding: 8px 10px;
+        text-wrap: nowrap;
+        text-align: center;
+        font-size: 16px;
     }
     </style>
 </head>
@@ -116,8 +139,8 @@
     <div class="circle"></div>
     <button class="btn-impo">START</button>
     <button class="btn-impo">STOP</button>
-    <button class="btn-impo"><img src="Assets/arrow-up.png" width="50"></button>
-    <button class="btn-impo"><img src="Assets/arrow-up.png" width="50" style="rotate: 180deg;"></button>
+    <button class="btn-impo"><img src="../main/Assets/arrow-up.png" width="50"></button>
+    <button class="btn-impo"><img src="../main/Assets/arrow-up.png" width="50" style="rotate: 180deg;"></button>
     <button class="btn-impo">>0<</button>
     <button class="btn-impo">PRINTER</button>
   </div>
@@ -125,16 +148,20 @@
     <div class="upper_panel">
         <div class="box">
             <label>Date</label>
+            <input disabled va>
+        </div>
+        <div class="box">
+            <label>Time trial, s</label>
             <input disabled>
         </div>
         <div class="box">
-            <label>Time Of Trial, s</label>
+            <label>Brand</label>
             <input disabled>
         </div>
-        <div class="box">
-            <label>Material Brand</label>
-            <input disabled>
-        </div>
+      <div class="box">
+        <label>Weight sample, gr</label>
+        <input disabled>
+      </div>
         <div class="box">
             <label>Load, N</label>
             <input disabled>
@@ -143,6 +170,10 @@
             <label>Speed, min <sup>-1</sup></label>
             <input disabled>
         </div>
+      <div class="box">
+        <label>Test number</label>
+        <input disabled>
+      </div>
     </div>
     <div class="main_panel">
 
@@ -151,13 +182,13 @@
         <table>
             <thead>
                 <tr>
-                    <th>Torque 1</th>
+                    <th>Torque 1, N</th>
                     <th>Time 1, s</th>
-                    <th>Torque 2</th>
+                    <th>Torque 2, N</th>
                     <th>Time 2, s</th>
-                    <th>Torque 3</th>
+                    <th>Torque 3, N</th>
                     <th>Time 3, s</th>
-                    <th>Torque 4</th>
+                    <th>Torque 4, N</th>
                     <th>Time 4, s</th>
                 </tr>
             </thead>
@@ -180,7 +211,7 @@
                     <th>Voltage, V</th>
                     <th>Curent, A</th>
                     <th>Frequency, HZ</th>
-                    <th>Power, Vt</th>
+                    <th>Power, Wt</th>
                     <th>Enegry, kWh</th>
                 </tr>
             </thead>
@@ -197,11 +228,11 @@
     </div>
   </div>
   <div class="right_panel">
-    <button class="btn-impo">Test</button>
+    <button class="btn-impo">Previous Tests</button>
     <button class="btn-impo">Open DB</button>
     <button class="btn-impo">Settings</button>
     <button class="btn-impo">?</button>
-    <button class="btn-impo">Exit</button>
+    <button class="btn-impo">Save to DB</button>
   </div>
 </div>
 
