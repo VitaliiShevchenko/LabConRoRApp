@@ -1,0 +1,39 @@
+<main class="container">
+  <%= turbo_frame_tag "creator_dashboard_turbo_frame" do %>
+    <table>
+      <tr>
+        <td>
+          <button>
+            <%= link_to 'BRANDS', :brands_creator_dashboards, method: :get%>
+          </button>
+        </td>
+        <td>
+          <button>
+            <%= link_to 'BRAND RECEIPTS', :brand_receipts_creator_dashboards, method: :get%>
+          </button>
+        </td>
+        <td>
+          <button>
+            <%= link_to 'RECEIPTS', :receipts_creator_dashboards, method: :get%>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button>
+            <%= link_to 'SUPPLIERS', :suppliers_creator_dashboards, method: :get%>
+          </button>
+        </td>
+        <td>
+          <button>
+            <%= link_to 'TESTS', :tests_creator_dashboards, method: :get%>
+          </button>
+        </td>
+        <td>
+          <button>
+            <%= link_to 'MATERIALS', :materials_creator_dashboards, method: :get%>
+          </button>
+        </td>
+    </table>
+  <% end %>
+</main>

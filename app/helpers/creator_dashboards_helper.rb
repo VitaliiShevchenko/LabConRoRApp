@@ -1,0 +1,2 @@
+module CreatorDashboardsHelper
+end

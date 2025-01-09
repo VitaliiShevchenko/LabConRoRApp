@@ -1,0 +1,19 @@
+
+button {
+  width: 30vw;
+  height: 47vh;
+  color: white;
+  font-size: 5vw;
+}
+
+a, a:link, a:visited {
+  padding: 20vh 0;
+  text-decoration: none;
+  color: white;
+  text-wrap: wrap;
+  line-height: 10vh;
+}
+
+body {
+  background-color: #90ee90;
+}

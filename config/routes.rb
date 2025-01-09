@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # Welcome page
-  root to: "welcome#index"
+  root to: "creator_dashboards#index"
 
   devise_for :users, controllers: {
          sessions: 'users/sessions',
@@ -28,5 +28,17 @@ Rails.application.routes.draw do
   # EXAMINATIONS CONTROLLER
   resources :examinations
 
-  get '*path', to: redirect('/admin/dashboard')
+  # CREATOR_DASHBOARDS
+  resources :creator_dashboards, only: [:index] do
+    collection do
+      get :brands
+      get :suppliers
+      get :brand_receipts
+      get :receipts
+      get :materials
+      get :tests
+    end
+  end
+
+  get '*path', to: redirect('/users/sign_in')
 end
