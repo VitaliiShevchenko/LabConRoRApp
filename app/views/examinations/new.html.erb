@@ -34,6 +34,8 @@
         width: 100px;
     }
 
+    .box .inp { width: 100px;}
+
     .left_panel {
         width: 125px;
         background-color: #90ee90;
@@ -134,6 +136,7 @@
 </head>
 <body>
 
+<%= form_with model: @test, url: examinations_path do |form| %>
 <div class="container">
   <div class="left_panel">
     <div class="circle"></div>
@@ -144,35 +147,35 @@
     <button class="btn-impo">>0<</button>
     <button class="btn-impo">PRINTER</button>
   </div>
-  <div class="right-container">
+    <div class="right-container">
     <div class="upper_panel">
         <div class="box">
             <label>Date</label>
-            <input disabled va>
+            <%= form.text_field :created_at, class: 'inp'  %>
         </div>
         <div class="box">
             <label>Time trial, s</label>
-            <input disabled>
+            <%= form.text_field :total_time, class: 'inp' %>
         </div>
         <div class="box">
             <label>Brand</label>
-            <input disabled>
+          <%= form.text_field :brand_receipt_id, class: 'inp' %>
         </div>
       <div class="box">
         <label>Weight sample, gr</label>
-        <input disabled>
+        <%= form.text_field "30", class: 'inp' %>
       </div>
         <div class="box">
             <label>Load, N</label>
-            <input disabled>
+          <%= form.text_field :total_time, class: 'inp' %>
         </div>
         <div class="box">
             <label>Speed, min <sup>-1</sup></label>
-            <input disabled>
+          <%= form.text_field :total_time, class: 'inp' %>
         </div>
       <div class="box">
         <label>Test number</label>
-        <input disabled>
+        <%= form.text_field :total_time, class: 'inp' %>
       </div>
     </div>
     <div class="main_panel">
@@ -194,14 +197,14 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>5023</td>
-                    <td>123</td>
-                    <td>2312</td>
-                    <td>12</td>
-                    <td>1231</td>
-                    <td>12</td>
-                    <td>1234</td>
-                    <td>12</td>
+                    <td><%= form.text_field :torque1, class: 'inp' %></td>
+                    <td><%= form.text_field :time1, class: 'inp' %></td>
+                    <td><%= form.text_field :torque2, class: 'inp' %></td>
+                    <td><%= form.text_field :time2, class: 'inp' %></td>
+                    <td><%= form.text_field :torque2, class: 'inp' %></td>
+                    <td><%= form.text_field :time3, class: 'inp' %></td>
+                    <td><%= form.text_field :torque4, class: 'inp' %></td>
+                    <td><%= form.text_field :time4, class: 'inp' %></td>
                 </tr>
             </tbody>
         </table>
@@ -209,33 +212,34 @@
             <thead>
                 <tr>
                     <th>Voltage, V</th>
-                    <th>Curent, A</th>
+                    <th>Current, A</th>
                     <th>Frequency, HZ</th>
-                    <th>Power, Wt</th>
-                    <th>Enegry, kWh</th>
+                    <th>Power, W</th>
+                    <th>Energy, kWh</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>5023</td>
-                    <td>123</td>
-                    <td>2312</td>
-                    <td>12</td>
-                    <td>1231</td>
+                    <td><%= form.text_field :time1, class: 'inp' %></td>
+                    <td><%= form.text_field :time1, class: 'inp' %></td>
+                    <td><%= form.text_field :time1, class: 'inp' %></td>
+                    <td><%= form.text_field :total_energy, class: 'inp' %></td>
+                    <td><%= form.text_field :te_persec, class: 'inp' %></td>
                 </tr>
             </tbody>
-        </table> 
+        </table>
     </div>
   </div>
-  <div class="right_panel">
+    <div class="right_panel">
     <button class="btn-impo">Previous Tests</button>
     <button class="btn-impo">Open DB</button>
     <button class="btn-impo">Settings</button>
     <button class="btn-impo">?</button>
     <button class="btn-impo">Save to DB</button>
   </div>
-</div>
 
+</div>
+<% end %>
 </body>
   <% end %>
 </main>
