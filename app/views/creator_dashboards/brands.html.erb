@@ -1,4 +1,28 @@
 <main class="container">
   <%= turbo_frame_tag "creator_dashboard_turbo_frame" do %>
+    <%= form_with model: @brand, url: :brands_creator_dashboards do |form| %>
+    <div class="d-flex input-form-brand">
+        <div class="side">
+          <div class="row">
+            <label class="label-name">BRAND NAME:</label>
+            <%= form.text_field "", class: "input-field up-case" %>
+          </div>
+          <div class="row">
+            <label class="label-name">INTENDED USE:</label>
+            <%= form.text_field "", class: "input-field" %>
+          </div>
+        </div>
+        <div class="side">
+          <div class="row d-flex">
+            <button class="btn-find">FIND</button>
+            <%= form.text_area "", class: "input-field-area", placeholder: "DESCRIPTION || ADDITIONAL INFORMATION" %>
+            <button class="btn-save">SAVE</button>
+          </div>
+        </div>
+    </div>
+    <% end %>
+    <div class="panel-tbl-brands">
+
+    </div>
   <% end %>
 </main>

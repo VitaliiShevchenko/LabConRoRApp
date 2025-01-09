@@ -1,0 +1,73 @@
+
+button {
+  width: 30vw;
+  height: 47vh;
+  color: white;
+  font-size: 5vw;
+}
+
+a, a:link, a:visited {
+  padding: 20vh 0;
+  text-decoration: none;
+  color: white;
+  text-wrap: wrap;
+  line-height: 10vh;
+}
+
+body {
+  background-color: #90ee90;
+  overflow: hidden;
+}
+
+.container {
+}
+
+.up-case {
+  text-transform: uppercase;
+}
+
+.lw-case {
+  text-transform: lowercase;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.input-form-brand {
+  width: 100vw;
+  height: 10vh;
+  .side {
+    width: 50%;
+    height: 100%;
+    .row {
+      padding: 5px;
+      font-size: 16px;
+      .btn-find, .btn-save{
+        width: 100px;
+        height: 5vh;
+        padding: 5px;
+      }
+      .label-name {
+        width: 125px;
+        text-align: right;
+        display: inline-block;
+      }
+      .input-field {
+        width: 80%;
+      }
+      .input-field-area {
+        width: 80%;
+        height: 95px;
+        margin: -15px 5px 0 5px;
+      }
+    }
+  }
+}
+
+.panel-tbl-brands {
+  width: 100vw;
+  height: 90vh;
+  background-color: #8a949e;
+  border: 1px solid #000000;
+}
