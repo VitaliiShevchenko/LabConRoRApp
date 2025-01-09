@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<main class="container">
+  <%= turbo_frame_tag "signup_turbo_frame" do %>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +9,32 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        scroll-margin-inline: 0px;
+    }
+    body , html{
+        height: 100vh;
+        margin-top: -9px;
+    }
+
+    input, td{
+        background-color: white;
+    }
+
+    table thead, th {
+        background: #ffff00 !important;
     }
 
     .container {
         display: flex;
         height: 100vh; /* Takes up the entire height of the window */
+        width: 100vw;
     }
+
+    .box input{
+        width: 100px;
+    }
+
+    .box .inp { width: 100px;}
 
     .left_panel {
         width: 125px;
@@ -35,7 +55,7 @@
     .left_panel .btn-impo {
         width: 75px;
         height: 75px;
-        margin-bottom: 5px;
+        margin: 25px 0;
         box-shadow: 2px 2px 7px black;
         transition: .3s;
     }
@@ -55,7 +75,7 @@
     .right_panel .btn-impo {
         width: 75px;
         height: 75px;
-        margin-bottom: 5px;
+        margin: 25px 0;
         box-shadow: 2px 2px 7px black;
         transition: .3s;
     }
@@ -73,12 +93,13 @@
 
     .upper_panel {
         display: flex;
-        flex-wrap: wrap; /* Allows you to move to a new line */
-        background-color: #add8e6;
+        flex-wrap: wrap;
+        background-color: #90ee90;
         width: 100%;
         height: 100%;
         padding: 10px;
         gap: 10px;
+        font-size: 16px;
     }
 
     .main_panel {
@@ -91,8 +112,8 @@
     .lower_panel {
         display: flex;
         gap: 63px;
-        flex-wrap: wrap; /* Allows you to move to a new line */
-        background-color: #add8e6;
+        flex-wrap: nowrap; /* Allows you to move to a new line */
+        background-color: #90ee90;
         width: 100%;
         height: 100%;
         padding: 10px;
@@ -104,45 +125,58 @@
     }
 
     .lower_panel table th, td {
+        width: 150px;
         border: 1px solid rgb(160 160 160);
         padding: 8px 10px;
+        text-wrap: nowrap;
+        text-align: center;
+        font-size: 16px;
     }
     </style>
 </head>
 <body>
 
+<%= form_with model: @test, url: examinations_path do |form| %>
 <div class="container">
   <div class="left_panel">
     <div class="circle"></div>
     <button class="btn-impo">START</button>
     <button class="btn-impo">STOP</button>
-    <button class="btn-impo"><img src="Assets/arrow-up.png" width="50"></button>
-    <button class="btn-impo"><img src="Assets/arrow-up.png" width="50" style="rotate: 180deg;"></button>
+    <button class="btn-impo"><img src="../main/Assets/arrow-up.png" width="50"></button>
+    <button class="btn-impo"><img src="../main/Assets/arrow-up.png" width="50" style="rotate: 180deg;"></button>
     <button class="btn-impo">>0<</button>
     <button class="btn-impo">PRINTER</button>
   </div>
-  <div class="right-container">
+    <div class="right-container">
     <div class="upper_panel">
         <div class="box">
             <label>Date</label>
-            <input disabled>
+            <%= form.text_field :created_at, class: 'inp'  %>
         </div>
         <div class="box">
-            <label>Time Of Trial, s</label>
-            <input disabled>
+            <label>Time trial, s</label>
+            <%= form.text_field :total_time, class: 'inp' %>
         </div>
         <div class="box">
-            <label>Material Brand</label>
-            <input disabled>
+            <label>Brand</label>
+          <%= form.text_field :brand_receipt_id, class: 'inp' %>
         </div>
+      <div class="box">
+        <label>Weight sample, gr</label>
+        <%= form.text_field "30", class: 'inp' %>
+      </div>
         <div class="box">
             <label>Load, N</label>
-            <input disabled>
+          <%= form.text_field :total_time, class: 'inp' %>
         </div>
         <div class="box">
             <label>Speed, min <sup>-1</sup></label>
-            <input disabled>
+          <%= form.text_field :total_time, class: 'inp' %>
         </div>
+      <div class="box">
+        <label>Test number</label>
+        <%= form.text_field :total_time, class: 'inp' %>
+      </div>
     </div>
     <div class="main_panel">
 
@@ -151,26 +185,26 @@
         <table>
             <thead>
                 <tr>
-                    <th>Torque 1</th>
+                    <th>Torque 1, N</th>
                     <th>Time 1, s</th>
-                    <th>Torque 2</th>
+                    <th>Torque 2, N</th>
                     <th>Time 2, s</th>
-                    <th>Torque 3</th>
+                    <th>Torque 3, N</th>
                     <th>Time 3, s</th>
-                    <th>Torque 4</th>
+                    <th>Torque 4, N</th>
                     <th>Time 4, s</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>5023</td>
-                    <td>123</td>
-                    <td>2312</td>
-                    <td>12</td>
-                    <td>1231</td>
-                    <td>12</td>
-                    <td>1234</td>
-                    <td>12</td>
+                    <td><%= form.text_field :torque1, class: 'inp' %></td>
+                    <td><%= form.text_field :time1, class: 'inp' %></td>
+                    <td><%= form.text_field :torque2, class: 'inp' %></td>
+                    <td><%= form.text_field :time2, class: 'inp' %></td>
+                    <td><%= form.text_field :torque2, class: 'inp' %></td>
+                    <td><%= form.text_field :time3, class: 'inp' %></td>
+                    <td><%= form.text_field :torque4, class: 'inp' %></td>
+                    <td><%= form.text_field :time4, class: 'inp' %></td>
                 </tr>
             </tbody>
         </table>
@@ -178,32 +212,34 @@
             <thead>
                 <tr>
                     <th>Voltage, V</th>
-                    <th>Curent, A</th>
+                    <th>Current, A</th>
                     <th>Frequency, HZ</th>
-                    <th>Power, Vt</th>
-                    <th>Enegry, kWh</th>
+                    <th>Power, W</th>
+                    <th>Energy, kWh</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>5023</td>
-                    <td>123</td>
-                    <td>2312</td>
-                    <td>12</td>
-                    <td>1231</td>
+                    <td><%= form.text_field :time1, class: 'inp' %></td>
+                    <td><%= form.text_field :time1, class: 'inp' %></td>
+                    <td><%= form.text_field :time1, class: 'inp' %></td>
+                    <td><%= form.text_field :total_energy, class: 'inp' %></td>
+                    <td><%= form.text_field :te_persec, class: 'inp' %></td>
                 </tr>
             </tbody>
-        </table> 
+        </table>
     </div>
   </div>
-  <div class="right_panel">
-    <button class="btn-impo">Test</button>
+    <div class="right_panel">
+    <button class="btn-impo">Previous Tests</button>
     <button class="btn-impo">Open DB</button>
     <button class="btn-impo">Settings</button>
     <button class="btn-impo">?</button>
-    <button class="btn-impo">Exit</button>
+    <button class="btn-impo">Save to DB</button>
   </div>
-</div>
 
+</div>
+<% end %>
 </body>
-</html>
+  <% end %>
+</main>
