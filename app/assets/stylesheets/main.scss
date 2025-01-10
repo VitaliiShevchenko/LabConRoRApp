@@ -67,7 +67,20 @@ body {
 
 .panel-tbl-brands {
   width: 100vw;
-  height: 90vh;
+  height: 82vh;
   background-color: #8a949e;
   border: 1px solid #000000;
+}
+
+.cell {
+  background-color: white;
+  empty-cells: show;
+  border-collapse: separate;
+}
+
+.btn {
+  width: auto;
+  height: 5vh;
+  font-size: 16px;
+  margin: 5px;
 }

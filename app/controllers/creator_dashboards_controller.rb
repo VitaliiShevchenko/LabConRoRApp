@@ -4,6 +4,7 @@ class CreatorDashboardsController < ApplicationController
   end
 
   def brands
+    @table_brands = Brand.all
     render :brands
   end
 

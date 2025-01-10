@@ -16,13 +16,44 @@
           <div class="row d-flex">
             <button class="btn-find">FIND</button>
             <%= form.text_area "", class: "input-field-area", placeholder: "DESCRIPTION || ADDITIONAL INFORMATION" %>
-            <button class="btn-save">SAVE</button>
           </div>
         </div>
     </div>
     <% end %>
     <div class="panel-tbl-brands">
-
+      <table>
+        <thead>
+          <tr>
+            <th>select</th>
+            <th>id</th>
+            <th>name</th>
+            <th>intended use</th>
+            <th>description</th>
+            <th>calc cost</th>
+            <th>created</th>
+            <th>updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% @table_brands.each do |rec|%>
+            <td class="cell"><input type="checkbox"></td>
+            <td class="cell"><%= rec.id %></td>
+            <td class="cell"><%= rec.name %></td>
+            <td class="cell"><%= rec.intended_use %></td>
+            <td class="cell"><%= rec.desc %></td>
+            <td class="cell"><%= rec.calculated_cost %></td>
+            <td class="cell"><%= rec.created_at %></td>
+            <td class="cell"><%= rec.updated_at %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    <footer>
+      <button class="btn btn-rec">NEW REC</button>
+      <button class="btn btn-rec">SAVE REC</button>
+      <button class="btn">NEXT</button>
+    </footer>
   <% end %>
 </main>
