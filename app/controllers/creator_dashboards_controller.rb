@@ -5,6 +5,8 @@ class CreatorDashboardsController < ApplicationController
 
   def brands
     @table_brands = Brand.all
+    @brand = Brand.new
+    @status_new_rec = true
     render :brands
   end
 

@@ -7,15 +7,10 @@
             <label class="label-name">BRAND NAME:</label>
             <%= form.text_field "", class: "input-field up-case" %>
           </div>
-          <div class="row">
-            <label class="label-name">INTENDED USE:</label>
-            <%= form.text_field "", class: "input-field" %>
-          </div>
         </div>
-        <div class="side">
-          <div class="row d-flex">
-            <button class="btn-find">FIND</button>
-            <%= form.text_area "", class: "input-field-area", placeholder: "DESCRIPTION || ADDITIONAL INFORMATION" %>
+        <div class="">
+          <div class="">
+            <button class="btn find">FIND</button>
           </div>
         </div>
     </div>
@@ -47,13 +42,46 @@
             <td class="cell"><%= rec.updated_at %></td>
             <% end %>
           </tr>
+          <% if @status_new_rec %>
+          <tr>
+            <%= form_with model:@brand, url: :brands_creator_dashboards do |form|   %>
+            <td class="cell"></td>
+            <td class="cell">*</td>
+            <td class="cell"><%= form.text_field @brand.name%></td>
+            <td class="cell"><%= form.text_field @brand.intended_use %></td>
+            <td class="cell"><%= form.text_field @brand.desc %></td>
+            <td class="cell"><%= form.text_field @brand.calculated_cost %></td>
+            <td class="cell">*</td>
+            <td class="cell">*</td>
+            <% end %>
+          </tr>
+          <% end %>
         </tbody>
       </table>
+      <div data-controller="clipboard" data-clipboard-supported-class="clipboard--supported">
+        PIN: <input data-clipboard-target="source" type="text" value="1234" readonly>
+        <button data-action="clipboard#copy" class="clipboard-button">Copy to Clipboard</button>
+      </div>
+      <div data-controller="clipboard" data-clipboard-supported-class="clipboard--supported">
+        PIN: <input data-clipboard-target="source" type="text" value="3578" readonly>
+        <button data-action="clipboard#copy" class="clipboard-button">Copy to Clipboard</button>
+      </div>
+      <div data-controller="slideshow" data-slideshow-index-value>
+        <button data-action="slideshow#previous"> ← </button>
+        <button data-action="slideshow#next"> → </button>
+
+        <div data-slideshow-target="slide">🐵</div>
+        <div data-slideshow-target="slide">🙈</div>
+        <div data-slideshow-target="slide">🙉</div>
+        <div data-slideshow-target="slide">🙊</div>
+      </div>
+      <div data-controller="content-loader" data-content-loader-url-value="/messages.html" data-content-loader-refresh-interval-value="10000"></div>
+
     </div>
-    <footer>
-      <button class="btn btn-rec">NEW REC</button>
+    <footer data-controller="hello">
+      <%= button_to "NEW REC", :new_user_session, class:"btn btn-rec" %>
       <button class="btn btn-rec">SAVE REC</button>
-      <button class="btn">NEXT</button>
+      <button class="btn" data-action="hello#greet">NEXT</button>
     </footer>
   <% end %>
 </main>
