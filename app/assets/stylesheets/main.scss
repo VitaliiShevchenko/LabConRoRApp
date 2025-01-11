@@ -1,5 +1,5 @@
 
-button {
+.button-big {
   width: 30vw;
   height: 47vh;
   color: white;
@@ -20,6 +20,7 @@ body {
 }
 
 .container {
+  margin-top:-15px;
 }
 
 .up-case {
@@ -36,7 +37,7 @@ body {
 
 .input-form-brand {
   width: 100vw;
-  height: 10vh;
+  height: 5vh;
   .side {
     width: 50%;
     height: 100%;
@@ -56,18 +57,13 @@ body {
       .input-field {
         width: 80%;
       }
-      .input-field-area {
-        width: 80%;
-        height: 95px;
-        margin: -15px 5px 0 5px;
-      }
     }
   }
 }
 
 .panel-tbl-brands {
   width: 100vw;
-  height: 82vh;
+  height: 89vh;
   background-color: #8a949e;
   border: 1px solid #000000;
 }
@@ -76,11 +72,24 @@ body {
   background-color: white;
   empty-cells: show;
   border-collapse: separate;
+  font-size: 16px;
 }
 
-.btn {
+.btn, .button_to{
   width: auto;
-  height: 5vh;
+  height: 44px;
   font-size: 16px;
   margin: 5px;
+  &.find {
+    margin: 0;
+  }
 }
+
+.button_to {
+  margin: 0;
+}
+
+footer {
+  display: inline-flex;
+}
+
