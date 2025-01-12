@@ -1,6 +1,6 @@
 <main class="container">
   <%= turbo_frame_tag "creator_dashboard_turbo_frame" do %>
-    <%= form_with model: @brand, url: :find_brand_creator_dashboards do |form| %>
+    <%= form_with model: @brand, url: :find_brand_brands do |form| %>
       <div class="d-flex input-form-brand">
         <div class="side">
           <div class="row">
@@ -16,7 +16,7 @@
       </div>
     <% end %>
     <div class="panel-tbl-brands">
-      <%= form_with model: @brand, url: :create_brand_creator_dashboards do |form|   %>
+      <%= form_with model: @brand, url: :create_brand_brands do |form|   %>
       <table>
         <thead>
         <tr>
@@ -31,7 +31,7 @@
         </tr>
         </thead>
         <tbody data-controller="radio-toggle">
-        <% @brands.each do |rec|%>
+          <% @brands.each do |rec|%>
         <tr>
             <td class="cell read">
               <input type="checkbox"
@@ -69,8 +69,8 @@
     <% end %>
     </div>
     <footer>
-      <%= button_to "CREATE NEW BRAND", :new_record_creator_dashboards, class:"btn btn-rec", method: :get %>
-      <%= button_to "NEXT TABLE", :new_record_creator_dashboards, class:"btn btn-rec", method: :get %>
+      <%= button_to "CREATE NEW BRAND", :new_record_brands, class:"btn", method: :get %>
+      <%= button_to "NEXT TABLE", :brands, class:"btn", method: :get %>
     </footer>
   <% end %>
 </main>
