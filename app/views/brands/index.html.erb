@@ -1,0 +1,79 @@
+<main class="container">
+  <%= turbo_frame_tag "creator_dashboard_turbo_frame" do %>
+    <%= form_with model: @brand, url: :find_brand_brands do |form| %>
+      <div class="d-flex input-form-brand">
+        <div class="side">
+          <div class="row">
+            <label class="label-name">FIND WORD:</label>
+            <%= form.text_field :find, class: "input-field" %>
+          </div>
+        </div>
+        <div class="">
+          <div class="">
+            <button class="btn find">FIND</button>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="panel-tbl-brands">
+      <%= form_with model: @brand, url: :create_brand_brands do |form|   %>
+      <table>
+        <thead>
+        <tr>
+          <th>select</th>
+          <th>id</th>
+          <th>name</th>
+          <th>intended use</th>
+          <th>description</th>
+          <th>calc cost</th>
+          <th>created</th>
+          <th>updated</th>
+        </tr>
+        </thead>
+        <tbody data-controller="radio-toggle">
+          <% @brands.each do |rec|%>
+        <tr>
+            <td class="cell read">
+              <input type="checkbox"
+                     id=<%= rec.id %>
+                     name='brands'
+                     data-action="radio-toggle#toggle"
+                     data-radio-toggle-target="radio"
+                     <%= @brands.last.id == rec.id ? "checked" : ""%>
+                />
+            </td>
+            <td class="cell read"><%= rec.id %></td>
+            <td class="cell read"><%= rec.name %></td>
+            <td class="cell read"><%= rec.intended_use %></td>
+            <td class="cell read"><%= rec.description%></td>
+            <td class="cell read"><%= rec.calculated_cost %></td>
+            <td class="cell read"><%= rec.created_at %></td>
+            <td class="cell read"><%= rec.updated_at %></td>
+        </tr>
+        <% end %>
+        <% if @status_new_rec %>
+          <tr>
+              <td class="cell center">*</td>
+              <td class="cell center">*</td>
+              <td class="cell"><%= form.text_field :name, class:"input-cell"%></td>
+              <td class="cell"><%= form.text_field :intended_use, class:"input-cell" %></td>
+              <td class="cell"><%= form.text_field :desc, class:"input-cell" %></td>
+              <td class="cell"><%= form.text_field :calculated_cost, class:"input-cell" %></td>
+              <td class="cell hidden"><%= form.hidden_field :creator_id, class:"input-cell" %></td>
+              <td class="cell center">*</td>
+              <td class="cell center">*</td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+        <%= form.submit if @status_new_rec%>
+    <% end %>
+    </div>
+    <footer>
+      <%= button_to "CREATE NEW BRAND", :new_record_brands, class:"btn", method: :get %>
+      <div class="form-btn-next-radio-toggle-controller">
+        <%= button_to "NEXT TABLE", brand_receipts_creator_dashboards_url(id:@brands.last), class:"btn", method: :get %>
+      </div>
+    </footer>
+  <% end %>
+</main>

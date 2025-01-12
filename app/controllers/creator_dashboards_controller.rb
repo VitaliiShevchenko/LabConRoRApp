@@ -1,10 +1,7 @@
 class CreatorDashboardsController < ApplicationController
+
   def index
     render :new
-  end
-
-  def brands
-    render :brands
   end
 
   def brand_receipts

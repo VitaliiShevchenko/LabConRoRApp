@@ -1,0 +1,124 @@
+
+.button-big {
+  width: 30vw;
+  height: 47vh;
+  color: white;
+  font-size: 5vw;
+}
+
+a, a:link, a:visited {
+  padding: 20vh 0;
+  text-decoration: none;
+  color: white;
+  text-wrap: wrap;
+  line-height: 10vh;
+}
+
+body {
+  background-color: #90ee90;
+  overflow: hidden;
+}
+
+.container {
+  margin-top:-15px;
+}
+
+.up-case {
+  text-transform: uppercase;
+}
+
+.lw-case {
+  text-transform: lowercase;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.input-form-brand {
+  width: 100vw;
+  height: 5vh;
+  .side {
+    width: 50%;
+    height: 100%;
+    .row {
+      padding: 5px;
+      font-size: 16px;
+      .btn-find, .btn-save{
+        width: 100px;
+        height: 5vh;
+        padding: 5px;
+      }
+      .label-name {
+        width: 125px;
+        text-align: right;
+        display: inline-block;
+      }
+      .input-field {
+        width: 80%;
+      }
+    }
+  }
+}
+
+.panel-tbl-brands {
+  width: 100vw;
+  height: 89vh;
+  background-color: #8a949e;
+  border: 1px solid #000000;
+  overflow: auto;
+
+  animation: anim 2s linear forwards;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+@keyframes anim {
+  100% {
+    stroke-dashoffset: 70;
+  }
+}
+
+.cell {
+  background-color: white;
+  empty-cells: show;
+  border-collapse: separate;
+  font-size: 16px;
+  padding: 0;
+  .input-cell{
+    width: 100%;
+  }
+  &.read{
+    padding: 3px;
+  }
+  &.hidden {
+    display: none;
+  }
+  &.center {
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+
+.btn, .button_to{
+  width: auto;
+  height: 44px;
+  font-size: 16px;
+  margin: 5px;
+  &.find {
+    margin: 0;
+  }
+}
+
+.button_to {
+  margin: 0;
+}
+
+footer {
+  display: inline-flex;
+}
+
