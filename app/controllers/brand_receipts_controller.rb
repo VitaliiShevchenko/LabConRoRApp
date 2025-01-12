@@ -1,0 +1,2 @@
+class BrandReceiptsController < ApplicationController
+end
