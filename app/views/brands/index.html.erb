@@ -35,6 +35,7 @@
         <tr>
             <td class="cell read">
               <input type="checkbox"
+                     id=<%= rec.id %>
                      name='brands'
                      data-action="radio-toggle#toggle"
                      data-radio-toggle-target="radio"
@@ -70,7 +71,9 @@
     </div>
     <footer>
       <%= button_to "CREATE NEW BRAND", :new_record_brands, class:"btn", method: :get %>
-      <%= button_to "NEXT TABLE", :brands, class:"btn", method: :get %>
+      <div class="form-btn-next-radio-toggle-controller">
+        <%= button_to "NEXT TABLE", brand_receipts_creator_dashboards_url(id:@brands.last), class:"btn", method: :get %>
+      </div>
     </footer>
   <% end %>
 </main>
