@@ -21,7 +21,8 @@ class CreatorDashboardsController < ApplicationController
   end
 
   def find_brand
-    @brands = Brand.where("name LIKE ? OR intended_use LIKE ?", "%#{params[:find]}%", "%#{params[:find]}%")
+    fnd = "%#{params[:find]}%"
+    @brands = Brand.where("name LIKE ? OR intended_use LIKE ? OR description LIKE ?", fnd, fnd, fnd).order(:name)
     render :brands
   end
 
@@ -59,6 +60,6 @@ class CreatorDashboardsController < ApplicationController
   end
 
   def permit_params
-    params.require(:brand).permit([ :name, :intended_use, :desc, :calculated_cost, :creator_id ])
+    params.require(:brand).permit([ :name, :intended_use, :description, :calculated_cost, :creator_id ])
   end
 end
