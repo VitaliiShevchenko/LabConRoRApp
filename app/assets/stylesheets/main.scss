@@ -66,6 +66,21 @@ body {
   height: 89vh;
   background-color: #8a949e;
   border: 1px solid #000000;
+  overflow: auto;
+
+  animation: anim 2s linear forwards;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+@keyframes anim {
+  100% {
+    stroke-dashoffset: 70;
+  }
 }
 
 .cell {
@@ -73,6 +88,20 @@ body {
   empty-cells: show;
   border-collapse: separate;
   font-size: 16px;
+  padding: 0;
+  .input-cell{
+    width: 100%;
+  }
+  &.read{
+    padding: 3px;
+  }
+  &.hidden {
+    display: none;
+  }
+  &.center {
+    text-align: center;
+    vertical-align: middle;
+  }
 }
 
 .btn, .button_to{

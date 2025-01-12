@@ -29,14 +29,17 @@ Rails.application.routes.draw do
   resources :examinations
 
   # CREATOR_DASHBOARDS
-  resources :creator_dashboards, only: [:index] do
+  resources :creator_dashboards, only: [:index, :post] do
     collection do
       get :brands
+      post :create_brand
+      post :find_brand
       get :suppliers
       get :brand_receipts
       get :receipts
       get :materials
       get :tests
+      get :new_record
     end
   end
 
