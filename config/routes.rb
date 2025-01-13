@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
   # Welcome page
-  root to: "creator_dashboards#index"
-
-  devise_for :users, controllers: {
-         sessions: 'users/sessions',
-        passwords: 'users/passwords',
-    confirmations: 'users/confirmations',
-    registrations: 'users/registrations',
-  }
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+  devise_for :users, controllers: {
+  sessions: 'users/sessions',
+  passwords: 'users/passwords',
+  confirmations: 'users/confirmations',
+  registrations: 'users/registrations',
+  }
+
+  root to: "creator_dashboards#index"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -31,11 +31,7 @@ Rails.application.routes.draw do
   # CREATOR_DASHBOARDS
   resources :creator_dashboards, only: [ :index ] do
     collection do
-      # get :brands
-      # post :create_brand
-      # post :find_brand
       get :suppliers
-      get :brand_receipts
       get :receipts
       get :materials
       get :tests
@@ -44,7 +40,7 @@ Rails.application.routes.draw do
   end
 
   # BRANDS CONTROLLER
-  resources :brands, only: [ :index, :post ] do
+  resources :brands, only: [ :index ] do
     collection do
       post :create_brand
       post :find_brand
@@ -52,5 +48,13 @@ Rails.application.routes.draw do
     end
   end
 
-  get '*path', to: redirect('/users/sign_in')
+  # BRAND_RECEIPTS CONTROLLER
+  resources :brand_receipts, only: [ :index, :create ] do
+    collection do
+      post :find
+      get :new_record
+    end
+  end
+
+  get '*path', to: redirect('/creator_dashboards')
 end
