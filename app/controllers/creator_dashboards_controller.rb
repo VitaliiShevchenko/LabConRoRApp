@@ -1,11 +1,8 @@
 class CreatorDashboardsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     render :new
-  end
-
-  def brand_receipts
-    render :brand_receipts
   end
 
   def receipts
