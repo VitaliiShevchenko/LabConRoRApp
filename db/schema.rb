@@ -72,18 +72,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_12_123456) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "create_suppliers", force: :cascade do |t|
-    t.string "name"
-    t.string "mobile"
-    t.string "email"
-    t.string "website"
-    t.string "contact_person"
-    t.string "note"
-    t.string "product_list"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "creators", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "position"
