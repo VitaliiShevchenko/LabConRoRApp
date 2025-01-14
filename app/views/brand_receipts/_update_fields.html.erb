@@ -1,0 +1,18 @@
+<td class="cell read">
+  <input type="checkbox"
+         id=<%= rec.brand_id %>
+           name='brands'
+         data-action="radio-toggle#toggle"
+         data-radio-toggle-target="radio"
+         checked
+    />
+</td>
+<td class="cell read"><%= rec.id %></td>
+<%= form.hidden_field :id, value: rec.id %>
+<td class="cell read"><%= form.number_field :density, value: rec.density , in: 1.00..3.00, step: 0.01 %></td>
+<td class="cell read"><%= form.number_field :hardnessShA, value: rec.hardnessShA , in: 1..100%></td>
+<td class="cell read"><%= form.number_field :hardnessShD, value: rec.hardnessShD , in: 1..100%></td>
+<td class="cell read"><%= form.number_field :receipt_num, value: rec.receipt_num %></td>
+<%= form.hidden_field :brand_id, value: rec.brand_id %>
+<td class="cell read"><%= rec.created_at %></td>
+<td class="cell read">will appear after saving</td>

@@ -1,0 +1,73 @@
+<main class="container">
+  <%= turbo_frame_tag "creator_dashboard_turbo_frame" do %>
+    <%= form_with model: @brand, url: :brands, method: :get do |form| %>
+      <div class="d-flex input-form-brand">
+        <div class="side full">
+          <div class="row mt--10">
+            <button class="btn">BRANDS</button>
+            <label class="label-name name">BRAND NAME:</label>
+            <%= form.text_field :name, class: "input-field name" %>
+            <%= form.hidden_field :id %>
+            <label class="label-name use">USE:</label>
+            <%= form.text_field :intended_use, class: "input-field use" %>
+            <label class="label-name desc">DESC:</label>
+             <%= form.text_field :description, class: "input-field desc" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="panel-tbl-brands">
+      <%= form_with model: @update_record || @brand_receipt || @brand_receipts,
+                    url: @update_record ? brand_receipt_path(@update_record) : brand_receipts_path,
+                    method: @update_record ? :put : :post do |form| %>
+        <table>
+          <thead>
+            <tr>
+              <th>SELECT</th>
+              <th>ID</th>
+              <th>DENSITY</th>
+              <th>SHORE A</th>
+              <th>SHORE D</th>
+              <th>RECEIPT NUMBER</th>
+              <th>CREATED</th>
+              <th>UPDATED</th>
+            </tr>
+          </thead>
+          <tbody data-controller="radio-toggle">
+          <% @brand_receipts.each do |rec|%>
+            <tr>
+
+              <% if @brand_receipt || @update_record&.id != rec.id %>
+
+                <%= render 'brand_receipts/readonly_fields', rec: rec, brand_receipts: @brand_receipts%>
+
+              <% else %>
+
+                <%= render 'brand_receipts/update_fields', rec: rec, form: form %>
+
+              <% end %>
+            </tr>
+          <% end %>
+
+          <%= render 'brand_receipts/new_record', form: form  if @new_record %>
+
+          </tbody>
+        </table>
+        <%= form.submit if @new_record || @update_record %>
+      <% end %>
+    </div>
+    <footer>
+      <%= button_to "ADD NEW RECEIPT", new_receipt_brand_receipts_url(id:@brand.id), class:"btn", method: :post  %>
+      <div class="form-btn-next-radio-toggle-controller">
+        <%= button_to "EDIT SELECTED RECEIPT", edit_rec_brand_receipts_url(id:@brand_receipts.last),
+                      class:"btn",
+                      method: :post,
+                      disabled: @brand_receipts.count == 0 %>,
+        %>
+      </div>
+      <div class="form-btn-next-radio-toggle-controller">
+        <%= button_to "NEXT TABLE", find_brand_receipts_url(id:@brand_receipts), class:"btn", method: :get %>
+      </div>
+    </footer>
+  <% end %>
+</main>

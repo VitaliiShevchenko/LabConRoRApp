@@ -34,13 +34,19 @@ body {
 .d-flex {
   display: flex;
 }
-
+.mt--10{
+  margin-top: -10px;
+}
 .input-form-brand {
   width: 100vw;
   height: 5vh;
   .side {
     width: 50%;
     height: 100%;
+    text-wrap: nowrap;
+    &.full {
+      width: 100%;
+    }
     .row {
       padding: 5px;
       font-size: 16px;
@@ -50,12 +56,28 @@ body {
         padding: 5px;
       }
       .label-name {
-        width: 125px;
+        width: 115px;
         text-align: right;
         display: inline-block;
+        &.use {
+          width:3vw;
+        }
+        &.desc {
+          width: 4vw;
+        }
       }
       .input-field {
         width: 80%;
+
+        &.name {
+          width:20vw;
+        }
+        &.use {
+          width:20vw
+        }
+        &.desc {
+          width: 35vw;
+        }
       }
     }
   }
