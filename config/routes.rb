@@ -34,7 +34,7 @@ Rails.application.routes.draw do
       # get :brands
       # post :create_brand
       # post :find_brand
-      get :suppliers
+      # get :suppliers
       get :brand_receipts
       get :receipts
       get :materials
@@ -51,6 +51,14 @@ Rails.application.routes.draw do
       get :new_record
     end
   end
+
+  # SUPPLIERS CONTROLLER
+  resources :suppliers do
+    collection do
+      get :new_record
+    end
+  end
+
 
   get '*path', to: redirect('/users/sign_in')
 end
