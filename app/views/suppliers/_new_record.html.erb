@@ -1,0 +1,20 @@
+<tr>
+  <td class="cell center">*</td>
+  <td class="cell center">*</td>
+  <td class="cell center"><%= form.check_box :active, checked: true %></td>
+  <td class="cell read"><%= form.text_field :name, class:"input-cell"%></td>
+  <td class="cell read"><%= form.text_field :mobile, class:"input-cell"%></td>
+  <td class="cell read"><%= form.text_field :phone, class:"input-cell"%></td>
+  <td class="cell read"><%= form.text_field :website, class:"input-cell"%></td>
+  <td class="cell read"><%= form.text_field :contact_person, class:"input-cell"%></td>
+  <td class="cell read"><%= form.text_field :note, class:"input-cell"%></td>
+  <td class="cell center read"><%= form.select :country, %w[Ukraine Europe China US Canada China], class:"input-cell"%></td>
+  <td class="cell read"><%= form.text_field :address, class:"input-cell" %></td>
+  <td class="cell center"><%= form.number_field :reliability, in: 1..100, step: 1, class:"input-cell" %></td>
+  <td class="cell center"><%= form.check_box :producer, class:"input-cell"%></td>
+  <td class="cell read"><%= form.text_field :product_ids, class:"input-cell"%></td>
+  <td class="cell read"><%= form.text_field :image, class:"input-cell" %></td>
+   <%= form.hidden_field :created_id, class:"input-cell" %>
+  <td class="cell center">*</td>
+  <td class="cell center">*</td>
+</tr>

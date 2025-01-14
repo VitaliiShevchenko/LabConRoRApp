@@ -26,7 +26,7 @@ class BrandReceiptsController < ApplicationController
   def new_receipt
     @brand = Brand.find(params[:id])
     @brand_receipts = @brand.brand_receipts.order(receipt_num: :asc)
-    @new_record = true
+    @new_supplier = true
     @brand_receipt = BrandReceipt.new
     @brand_receipt.brand_id = @brand.id
     render :index

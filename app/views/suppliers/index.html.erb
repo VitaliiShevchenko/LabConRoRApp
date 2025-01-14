@@ -1,0 +1,73 @@
+<main class="container">
+  <%= turbo_frame_tag "creator_dashboard_turbo_frame" do %>
+      <div class="d-flex input-form-brand">
+        <div class="side full">
+          <div class="row mt--10">
+            SUPPLIERS
+          </div>
+        </div>
+      </div>
+    <div class="panel-tbl-brands">
+      <%= form_with model: @update_record || @supplier || @suppliers,
+                    url: @update_record ? supplier_path(@update_record) : suppliers_path,
+                    method: @update_record ? :put : :post do |form| %>
+        <table>
+          <thead>
+            <tr>
+              <th>SELECT</th>
+              <th>ID</th>
+              <th>ACTIVE</th>
+              <th>NAME</th>
+              <th>MOBILE</th>
+              <th>PHONE</th>
+              <th>WEBSITE</th>
+              <th>CONTACT PERSON</th>
+              <th>NOTE</th>
+              <th>COUNTRY</th>
+              <th>ADDRESS</th>
+              <th>RELIABILITY</th>
+              <th>PRODUCER</th>
+              <th>PRODUCT LIST</th>
+              <th>IMAGE</th>
+              <th>CREATED</th>
+              <th>UPDATED</th>
+            </tr>
+          </thead>
+          <tbody data-controller="radio-toggle">
+          <% @suppliers.each do |rec|%>
+            <tr>
+
+              <% if @supplier || @update_record&.id != rec.id %>
+
+                <%= render 'suppliers/readonly_fields', rec: rec, brand_receipts: @suppliers%>
+
+              <% else %>
+
+                <%= render 'suppliers/update_fields', rec: rec, form: form %>
+
+              <% end %>
+            </tr>
+          <% end %>
+
+          <%= render 'suppliers/new_record', form: form  if @new_supplier %>
+
+          </tbody>
+        </table>
+        <%= form.submit if @new_supplier || @update_record %>
+      <% end %>
+    </div>
+    <footer>
+      <%= button_to "ADD NEW SUPPLIER",  :add_new_suppliers, class:"btn", method: :get  %>
+      <div class="form-btn-next-radio-toggle-controller">
+        <%= button_to "EDIT SELECTED SUPPLIER", suppliers_url(id:@suppliers.last),
+                      class:"btn",
+                      method: :post,
+                      disabled: @suppliers.count == 0 %>,
+        %>
+      </div>
+      <div class="form-btn-next-radio-toggle-controller">
+        <%= button_to "ADD MATERIALS", find_materials_suppliers_url(id:@suppliers.last), class:"btn", method: :get %>
+      </div>
+    </footer>
+  <% end %>
+</main>
