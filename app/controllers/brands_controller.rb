@@ -29,6 +29,8 @@ class BrandsController < ApplicationController
     render :index
   end
 
+  private
+
   def permit_params
     params.require(:brand).permit([ :name, :intended_use, :description, :calculated_cost, :creator_id ])
   end

@@ -49,10 +49,11 @@ Rails.application.routes.draw do
   end
 
   # BRAND_RECEIPTS CONTROLLER
-  resources :brand_receipts, only: [ :index, :create ] do
+  resources :brand_receipts, only: [ :index, :create, :update ] do
     collection do
       post :find
-      get :new_record
+      post :new_receipt
+      post :edit_rec
     end
   end
 

@@ -11,74 +11,60 @@
             <label class="label-name use">USE:</label>
             <%= form.text_field :intended_use, class: "input-field use" %>
             <label class="label-name desc">DESC:</label>
-            <%= form.text_field :description, class: "input-field desc" %>
-          </div>
-        </div>
-        <div class="">
-          <div class="">
-
+             <%= form.text_field :description, class: "input-field desc" %>
           </div>
         </div>
       </div>
     <% end %>
     <div class="panel-tbl-brands">
-      <%= form_with model: @brand_receipts, url: :brand_receipts do |form|   %>
+      <%= form_with model: @update_record || @brand_receipt || @brand_receipts,
+                    url: @update_record ? brand_receipt_path(@update_record) : brand_receipts_path,
+                    method: @update_record ? :put : :post do |form| %>
         <table>
           <thead>
-          <tr>
-            <th>SELECT</th>
-            <th>ID</th>
-            <th>DENSITY</th>
-            <th>SHORE A</th>
-            <th>SHORE D</th>
-            <th>RECEIPT NUMBER</th>
-            <th>CREATED</th>
-            <th>UPDATED</th>
-          </tr>
+            <tr>
+              <th>SELECT</th>
+              <th>ID</th>
+              <th>DENSITY</th>
+              <th>SHORE A</th>
+              <th>SHORE D</th>
+              <th>RECEIPT NUMBER</th>
+              <th>CREATED</th>
+              <th>UPDATED</th>
+            </tr>
           </thead>
           <tbody data-controller="radio-toggle">
-          <% unless @brand_receipts.empty? %>
           <% @brand_receipts.each do |rec|%>
             <tr>
-              <td class="cell read">
-                <input type="checkbox"
-                       id=<%= rec.brand_id %>
-                         name='brands'
-                       data-action="radio-toggle#toggle"
-                       data-radio-toggle-target="radio"
-                       <%= @brand_receipts.last.id == rec.id ? "checked" : ""%>
-                  />
-              </td>
-              <td class="cell read"><%= rec.id %></td>
-              <td class="cell read"><%= rec.density %></td>
-              <td class="cell read"><%= rec.hardnessShA %></td>
-              <td class="cell read"><%= rec.hardnessShD%></td>
-              <td class="cell read"><%= rec.receipt_num %></td>
-              <td class="cell read"><%= rec.created_at %></td>
-              <td class="cell read"><%= rec.updated_at %></td>
+
+              <% if @brand_receipt || @update_record&.id != rec.id %>
+
+                <%= render 'brand_receipts/readonly_fields', rec: rec, brand_receipts: @brand_receipts%>
+
+              <% else %>
+
+                <%= render 'brand_receipts/update_fields', rec: rec, form: form %>
+
+              <% end %>
             </tr>
           <% end %>
-          <% end %>
-          <% if @status_new_rec %>
-            <tr>
-              <td class="cell center">*</td>
-              <td class="cell center">*</td>
-              <td class="cell"><%= form.text_field :density, class:"input-cell"%></td>
-              <td class="cell"><%= form.text_field :hardnessShA, class:"input-cell" %></td>
-              <td class="cell"><%= form.text_field :hardnessShD, class:"input-cell" %></td>
-              <td class="cell"><%= form.text_field :receipt_num, class:"input-cell" %></td>
-              <td class="cell hidden"><%= form.hidden_field :brand_id, class:"input-cell" %></td>
-              <td class="cell center">*</td>
-              <td class="cell center">*</td>
-            </tr>
-          <% end %>
+
+          <%= render 'brand_receipts/new_record', form: form  if @new_record %>
+
           </tbody>
         </table>
-        <%= form.submit if @status_new_rec%>
+        <%= form.submit if @new_record || @update_record %>
       <% end %>
     </div>
     <footer>
-      <%= button_to "ADD NEW RECEIPT", :new_record_brands, class:"btn", method: :get %>
+      <%= button_to "ADD NEW RECEIPT", new_receipt_brand_receipts_url(id:@brand.id), class:"btn", method: :post  %>
+      <div class="form-btn-next-radio-toggle-controller">
+        <%= button_to "EDIT SELECTED RECEIPT", edit_rec_brand_receipts_url(id:@brand_receipts.last),
+                      class:"btn",
+                      method: :post,
+                      disabled: @brand_receipts.count == 0 %>,
+        %>
+      </div>
       <div class="form-btn-next-radio-toggle-controller">
         <%= button_to "NEXT TABLE", find_brand_receipts_url(id:@brand_receipts), class:"btn", method: :get %>
       </div>
