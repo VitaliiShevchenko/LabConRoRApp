@@ -57,7 +57,7 @@
               <td class="cell center">*</td>
               <td class="cell"><%= form.text_field :name, class:"input-cell"%></td>
               <td class="cell"><%= form.text_field :intended_use, class:"input-cell" %></td>
-              <td class="cell"><%= form.text_field :desc, class:"input-cell" %></td>
+              <td class="cell"><%= form.text_field :description, class:"input-cell" %></td>
               <td class="cell"><%= form.text_field :calculated_cost, class:"input-cell" %></td>
               <td class="cell hidden"><%= form.hidden_field :creator_id, class:"input-cell" %></td>
               <td class="cell center">*</td>
@@ -72,7 +72,7 @@
     <footer>
       <%= button_to "CREATE NEW BRAND", :new_record_brands, class:"btn", method: :get %>
       <div class="form-btn-next-radio-toggle-controller">
-        <%= button_to "NEXT TABLE", brand_receipts_creator_dashboards_url(id:@brands.last), class:"btn", method: :get %>
+        <%= button_to "NEXT TABLE", find_brand_receipts_url(id:@brands.last), class:"btn", method: :post %>
       </div>
     </footer>
   <% end %>

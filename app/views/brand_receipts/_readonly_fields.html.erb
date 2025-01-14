@@ -1,0 +1,16 @@
+<td class="cell read">
+  <input type="checkbox"
+         id=<%= rec.id %>
+           name='brands'
+         data-action="radio-toggle#toggle"
+         data-radio-toggle-target="radio"
+         <%= @brand_receipts.last.id == rec.id ? "checked" : ""%>
+    />
+</td>
+<td class="cell read"><%= rec.id %></td>
+<td class="cell read"><%= rec.density %></td>
+<td class="cell read"><%= rec.hardnessShA %></td>
+<td class="cell read"><%= rec.hardnessShD %></td>
+<td class="cell read"><%= rec.receipt_num %></td>
+<td class="cell read"><%= rec.created_at %></td>
+<td class="cell read"><%= rec.updated_at %></td>
