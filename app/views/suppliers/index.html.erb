@@ -59,7 +59,7 @@
     <footer>
       <%= button_to "ADD NEW SUPPLIER",  :add_new_suppliers, class:"btn", method: :get  %>
       <div class="form-btn-next-radio-toggle-controller">
-        <%= button_to "EDIT SELECTED SUPPLIER", suppliers_url(id:@suppliers.last),
+        <%= button_to "EDIT SELECTED SUPPLIER", edit_rec_suppliers_url(id: @suppliers.last),
                       class:"btn",
                       method: :post,
                       disabled: @suppliers.count == 0 %>,

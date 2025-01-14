@@ -57,9 +57,10 @@ Rails.application.routes.draw do
   end
 
   # SUPPLIERS CONTROLLER
-  resources :suppliers do
+  resources :suppliers, only: [ :index, :create, :update ] do
     collection do
       get :add_new
+      post :edit_rec
       get :find_materials # temporary, need to move into the MATERIALS_CONTROLLER
     end
   end
