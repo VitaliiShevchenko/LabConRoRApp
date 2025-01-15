@@ -27,8 +27,9 @@ class SuppliersController < ApplicationController
   end
 
   def find_materials
-    supplier = Supplier.find(params[:id])
-    @materials = supplier.materials
+    @supplier = Supplier.find(params[:id])
+    @materials = @supplier.material
+    redirect_to :materials_creator_dashboards
   end
 
   def add_new
