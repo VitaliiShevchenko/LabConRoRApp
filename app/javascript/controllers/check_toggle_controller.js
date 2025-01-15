@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = [ "radio" ]
+    static targets = [ "check" ]
 
     toggle(event){
         const clickedCheckBox = event.target
@@ -14,13 +14,13 @@ export default class extends Controller {
         this.changeURL(clickedCheckBox)
     }
 
-    changeURL (clickedRadio) {
-        const divContainersSelector = ".form-btn-next-radio-toggle-controller"
+    changeURL (clickedCheckBox) {
+        const divContainersSelector = ".form-check-toggle-controller"
         const nodeListDivs = document.querySelectorAll(divContainersSelector)
 
         nodeListDivs.forEach((div) => {
             let form = div.children[0]
-            form.action = form.action.replace(/\d{1,}$/, `${clickedRadio.id}`)
+            form.action = form.action.replace(/\d{1,}$/, `${clickedCheckBox.id}`)
         })
     }
 }

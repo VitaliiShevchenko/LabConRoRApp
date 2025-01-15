@@ -14,7 +14,7 @@ class BrandReceiptsController < ApplicationController
 
   def create
     @brand = Brand.find(permit_params[:brand_id])
-    brand_receipt= BrandReceipt.create(permit_params)
+    brand_receipt = BrandReceipt.create(permit_params)
     if brand_receipt.errors.any?
       flash[:alert] = brand_receipt.errors.full_messages.first
     else
@@ -26,7 +26,7 @@ class BrandReceiptsController < ApplicationController
   def new_receipt
     @brand = Brand.find(params[:id])
     @brand_receipts = @brand.brand_receipts.order(receipt_num: :asc)
-    @new_record= true
+    @new_record = true
     @brand_receipt = BrandReceipt.new
     @brand_receipt.brand_id = @brand.id
     render :index

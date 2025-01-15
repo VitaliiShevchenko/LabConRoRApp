@@ -16,7 +16,7 @@ class BrandsController < ApplicationController
   end
 
   def find_brand
-    fnd = "%#{params[:name]}%"
+    fnd = "%#{params[:find]}%"
     @brands = Brand.where("name LIKE ? OR intended_use LIKE ? OR description LIKE ?", fnd, fnd, fnd).order(:name)
     render :index
   end

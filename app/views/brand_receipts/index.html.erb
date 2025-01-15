@@ -58,14 +58,14 @@
     </div>
     <footer>
       <%= button_to "ADD NEW RECEIPT", new_receipt_brand_receipts_url(id:@brand.id), class:"btn", method: :post  %>
-      <div class="form-btn-next-radio-toggle-controller">
+      <div class="form-check-toggle-controller">
         <%= button_to "EDIT SELECTED RECEIPT", edit_rec_brand_receipts_url(id:@brand_receipts.last),
                       class:"btn",
                       method: :post,
                       disabled: @brand_receipts.count == 0 %>,
         %>
       </div>
-      <div class="form-btn-next-radio-toggle-controller">
+      <div class="form-check-toggle-controller">
         <%= button_to "NEXT TABLE", find_brand_receipts_url(id:@brand_receipts), class:"btn", method: :get %>
       </div>
     </footer>

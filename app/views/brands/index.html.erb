@@ -71,7 +71,7 @@
     </div>
     <footer>
       <%= button_to "CREATE NEW BRAND", :new_record_brands, class:"btn", method: :get %>
-      <div class="form-btn-next-radio-toggle-controller">
+      <div class="form-check-toggle-controller">
         <%= button_to "NEXT TABLE", find_brand_receipts_url(id:@brands.last), class:"btn", method: :post %>
       </div>
     </footer>
