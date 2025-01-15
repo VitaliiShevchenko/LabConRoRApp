@@ -1,0 +1,30 @@
+<td class="cell read center">
+  <input type="checkbox"
+         id=<%= rec.id %>
+         name="checkBox"
+         data-action="radio-toggle#toggle"
+         data-radio-toggle-target="radio"
+         <%= st & (@suppliers.last.id == rec.id) ? 'checked' : '' %>
+    />
+</td>
+
+<td class="cell read"><%= rec.id %></td>
+<td class="cell center">
+  <input <%= rec.active ? 'checked' : '' %> type="checkbox" id="`supplier_active`" name="supplier[active]" value="true" />
+</td>
+<td class="cell read"><%= rec.name %></td>
+<td class="cell read"><%= rec.mobile %></td>
+<td class="cell read"><%= rec.phone %></td>
+<td class="cell read"><%= rec.website %></td>
+<td class="cell read"><%= rec.contact_person %></td>
+<td class="cell read"><%= rec.note %></td>
+<td class="cell center "><%= rec.country %></td>
+<td class="cell "><%= rec.address  %></td>
+<td class="cell center"><%= rec.reliability %></td>
+<td class="cell center">
+  <input <%= rec.producer ? 'checked' : '' %> type="checkbox" id="supplier_producer" name="supplier[validated]" />
+</td>
+<td class="cell read"><%= rec.product_list %></td>
+<td class="cell read"><%= rec.image  %></td>
+<td class="cell read"><%= rec.created_at %></td>
+<td class="cell read"><%= rec.updated_at %></td>

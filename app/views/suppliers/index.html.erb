@@ -1,0 +1,81 @@
+<main class="container">
+  <%= turbo_frame_tag "creator_dashboard_turbo_frame" do %>
+    <% model = @update_record || @supplier || @suppliers %>
+    <%= form_with model: , url: :find_suppliers , method: :patch do |form| %>
+      <div class="d-flex input-form-brand">
+        <div class="side">
+          <div class="row">
+            <label class="label-name">FIND SUPPLIER:</label>
+            <%= form.text_field :name , value:"", class: "input-field" %>
+          </div>
+        </div>
+        <div class="">
+          <div class="">
+            <%= form.submit "FIND", class: "btn find" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="panel-tbl-brands">
+      <%
+        url =  suppliers_path
+        url =  supplier_path(@update_record) if @update_record
+        method = :put if @update_record
+      %>
+      <%= form_with model: , url: , method:  do |form| %>
+        <table>
+          <thead>
+            <tr>
+              <th>SELECT</th>
+              <th>ID</th>
+              <th>ACTIVE</th>
+              <th>NAME</th>
+              <th>MOBILE</th>
+              <th>PHONE</th>
+              <th>WEBSITE</th>
+              <th>CONTACT PERSON</th>
+              <th>NOTE</th>
+              <th>COUNTRY</th>
+              <th>ADDRESS</th>
+              <th>RELIABILITY</th>
+              <th>PRODUCER</th>
+              <th>PRODUCT LIST</th>
+              <th>IMAGE</th>
+              <th>CREATED</th>
+              <th>UPDATED</th>
+            </tr>
+          </thead>
+          <tbody data-controller="radio-toggle">
+          <% @suppliers.each do |rec|%>
+            <tr>
+              <%
+                its_readonly_row = @supplier || @update_record&.id != rec.id
+                st = @update_record.nil? & @new_supplier.nil?
+              %>
+              <%=
+                if its_readonly_row
+                  render 'suppliers/output_readonly_fields', rec: rec, brand_receipts: @suppliers, st:
+                else
+                  render 'suppliers/output_update_fields', rec: rec, form: form
+                end
+              %>
+            </tr>
+          <% end %>
+
+          <%= render 'suppliers/add_row_new_supplier', form: form  if @new_supplier %>
+
+          </tbody>
+        </table>
+        <%= form.submit class: "btn" if @new_supplier || @update_record %>
+      <% end %>
+    </div>
+
+    <footer>
+      <%=
+        button_to "ADD NEW SUPPLIER",  :add_new_suppliers, class:"btn", method: :get  %><%=
+        render 'suppliers/shows_EDIT_DELETE_MATERIALS_buttons' unless @suppliers.empty?
+      %>
+    </footer>
+
+  <% end %>
+</main>
