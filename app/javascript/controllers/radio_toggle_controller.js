@@ -4,14 +4,14 @@ export default class extends Controller {
     static targets = [ "radio" ]
 
     toggle(event){
-        const clickedRadio = event.target
-        const radios = document.querySelectorAll("input[name='brands']:checked")
+        const clickedCheckBox = event.target
+        const checkBoxes = document.querySelectorAll("input[name='checkBox']:checked")
 
-        radios.forEach((radio) => radio.checked = false )
+        checkBoxes.forEach((checkBox) => checkBox.checked = false )
 
-        clickedRadio.checked = true
+        clickedCheckBox.checked = true
 
-        this.changeURL(clickedRadio)
+        this.changeURL(clickedCheckBox)
     }
 
     changeURL (clickedRadio) {
