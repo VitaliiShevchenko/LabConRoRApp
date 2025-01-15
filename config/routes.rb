@@ -61,6 +61,7 @@ Rails.application.routes.draw do
     collection do
       get :add_new
       post :edit_rec
+      patch :find
       get :find_materials # temporary, need to move into the MATERIALS_CONTROLLER
     end
   end

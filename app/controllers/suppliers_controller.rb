@@ -43,12 +43,28 @@ class SuppliersController < ApplicationController
      @update_record = Supplier.find(params[:id])
      @suppliers = Supplier.all.order(name: :desc)
      render :index
+   end
+
+  def find
+    fnd = "%#{permit_params[:name]}%"
+    @suppliers = Supplier.where("name LIKE ? OR
+                                  address LIKE ? OR
+                                  contact_person LIKE ? OR
+                                  note LIKE ? OR
+                                  mobile LIKE ? OR
+                                  phone LIKE ? OR
+                                  website LIKE ? OR
+                                  image LIKE ? OR
+                                  product_list LIKE ? OR
+                                  country LIKE ?",
+                                fnd, fnd, fnd, fnd, fnd,fnd, fnd, fnd, fnd, fnd).order(:name)
+    render :index
   end
 
   private
 
   def permit_params
     params.require(:supplier).permit(:id, :name, :mobile, :phone, :website, :contact_person, :note, :active, :country,
-                                     :reliability, :image, :producer, :creator_id,  product_ids: [])
+                                     :reliability, :image, :producer, :creator_id, :product_list,  product_ids: [])
   end
 end
