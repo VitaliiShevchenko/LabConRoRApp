@@ -15,9 +15,12 @@ export default class extends Controller {
     }
 
     changeURL (clickedRadio) {
-        const selectorNextTable = ".form-btn-next-radio-toggle-controller"
-        const formBtnNxt = document.querySelector(selectorNextTable).children[0]
+        const divContainersSelector = ".form-btn-next-radio-toggle-controller"
+        const nodeListDivs = document.querySelectorAll(divContainersSelector)
 
-        formBtnNxt.action = formBtnNxt.action.replace(/id=\d+/, `id=${clickedRadio.id}`)
+        nodeListDivs.forEach((div) => {
+            let form = div.children[0]
+            form.action = form.action.replace(/\d{1,}$/, `${clickedRadio.id}`)
+        })
     }
 }
