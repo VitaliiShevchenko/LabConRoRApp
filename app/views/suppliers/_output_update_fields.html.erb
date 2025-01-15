@@ -1,4 +1,4 @@
-<td class="cell read">
+<td class="cell read center">
   <input type="checkbox"
          id=<%= rec.id %>
            name='brands'
@@ -10,7 +10,7 @@
 
 <td class="cell read"><%= rec.id %></td>
 <%= form.hidden_field :id, value: rec.id %>
-<td class="cell center"><%= form.check_box :active %></td>
+<td class="cell center"><%= form.check_box :active, class:"input-cell" %></td>
 <td class="cell read"><%= form.text_field :name, class:"input-cell"%></td>
 <td class="cell read"><%= form.text_field :mobile, class:"input-cell"%></td>
 <td class="cell read"><%= form.text_field :phone, class:"input-cell"%></td>

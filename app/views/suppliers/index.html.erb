@@ -8,9 +8,13 @@
         </div>
       </div>
     <div class="panel-tbl-brands">
-      <%= form_with model: @update_record || @supplier || @suppliers,
-                    url: @update_record ? supplier_path(@update_record) : suppliers_path,
-                    method: @update_record ? :put : :post do |form| %>
+      <%
+        url =  suppliers_path
+        url =  supplier_path(@update_record) if @update_record
+        model = @update_record || @supplier || @suppliers
+        method = :put if @update_record
+      %>
+      <%= form_with model: , url: , method:  do |form| %>
         <table>
           <thead>
             <tr>
@@ -36,38 +40,31 @@
           <tbody data-controller="radio-toggle">
           <% @suppliers.each do |rec|%>
             <tr>
-
-              <% if @supplier || @update_record&.id != rec.id %>
-
-                <%= render 'suppliers/readonly_fields', rec: rec, brand_receipts: @suppliers%>
-
-              <% else %>
-
-                <%= render 'suppliers/update_fields', rec: rec, form: form %>
-
-              <% end %>
+              <% its_readonly_row = @supplier || @update_record&.id != rec.id  %>
+              <%=
+                if its_readonly_row
+                  render 'suppliers/output_readonly_fields', rec: rec, brand_receipts: @suppliers, st: @update_record.nil?
+                else
+                  render 'suppliers/output_update_fields', rec: rec, form: form
+                end
+              %>
             </tr>
           <% end %>
 
-          <%= render 'suppliers/new_record', form: form  if @new_supplier %>
+          <%= render 'suppliers/add_row_new_supplier', form: form  if @new_supplier %>
 
           </tbody>
         </table>
-        <%= form.submit if @new_supplier || @update_record %>
+        <%= form.submit class: "btn" if @new_supplier || @update_record %>
       <% end %>
     </div>
+
     <footer>
-      <%= button_to "ADD NEW SUPPLIER",  :add_new_suppliers, class:"btn", method: :get  %>
-      <div class="form-btn-next-radio-toggle-controller">
-        <%= button_to "EDIT SELECTED SUPPLIER", edit_rec_suppliers_url(id: @suppliers.last),
-                      class:"btn",
-                      method: :post,
-                      disabled: @suppliers.count == 0 %>,
-        %>
-      </div>
-      <div class="form-btn-next-radio-toggle-controller">
-        <%= button_to "ADD MATERIALS", find_materials_suppliers_url(id:@suppliers.last), class:"btn", method: :get %>
-      </div>
+      <%=
+        button_to "ADD NEW SUPPLIER",  :add_new_suppliers, class:"btn", method: :get
+        render 'suppliers/shows_EDIT_DELETE_MATERIALS_buttons' unless @suppliers.empty?
+      %>
     </footer>
+
   <% end %>
 </main>

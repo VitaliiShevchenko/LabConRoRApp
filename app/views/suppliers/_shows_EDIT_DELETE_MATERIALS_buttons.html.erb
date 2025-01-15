@@ -1,0 +1,17 @@
+<div class="form-btn-next-radio-toggle-controller">
+  <%= button_to "EDIT SELECTED SUPPLIER", edit_rec_suppliers_url(id: @suppliers.last),
+                class:"btn",
+                method: :post
+  %>
+</div>
+<div class="form-btn-next-radio-toggle-controller">
+  <%= button_to "DELETE SELECTED SUPPLIER", supplier_url(id: @suppliers&.last),
+                class:"btn",
+                data: { turbo_confirm: "\nDelete selected supplier?\n\n Are you sure?" },
+                method: :delete
+  %>
+</div>
+
+<div class="form-btn-next-radio-toggle-controller">
+  <%= button_to "ADD MATERIALS", find_materials_suppliers_url(id: @suppliers.last), class:"btn", method: :get %>
+</div>

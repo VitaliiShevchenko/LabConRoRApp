@@ -2,25 +2,28 @@ class SuppliersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @suppliers = Supplier.all
+    @suppliers = Supplier.all.order(name: :desc)
     render :index
   end
 
   def create
     @supplier = Supplier.create(permit_params)
-    @suppliers = Supplier.all
+    @suppliers = Supplier.all.order(name: :desc)
     render :index
   end
 
   def update
     @supplier = Supplier.find(params[:id])
     @supplier.update(permit_params)
-    @suppliers = Supplier.all
+    @suppliers = Supplier.all.order(name: :desc)
     render :index
   end
 
   def destroy
     @supplier = Supplier.find(params[:id])
+    @supplier.destroy
+    @suppliers = Supplier.all.order(name: :desc)
+    render :index
   end
 
   def find_materials
@@ -29,7 +32,7 @@ class SuppliersController < ApplicationController
   end
 
   def add_new
-    @suppliers = Supplier.all
+    @suppliers = Supplier.all.order(name: :desc)
     @new_supplier = true
     @supplier = Supplier.new
     @supplier.creator_id = current_user.creator.id
@@ -38,7 +41,7 @@ class SuppliersController < ApplicationController
 
    def edit_rec
      @update_record = Supplier.find(params[:id])
-     @suppliers = Supplier.all
+     @suppliers = Supplier.all.order(name: :desc)
      render :index
   end
 
@@ -46,6 +49,6 @@ class SuppliersController < ApplicationController
 
   def permit_params
     params.require(:supplier).permit(:id, :name, :mobile, :phone, :website, :contact_person, :note, :active, :country,
-                                      :reliability, :image, :producer, :creator_id,  product_ids: [])
+                                     :reliability, :image, :producer, :creator_id,  product_ids: [])
   end
 end

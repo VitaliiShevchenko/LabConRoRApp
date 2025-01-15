@@ -57,7 +57,7 @@ Rails.application.routes.draw do
   end
 
   # SUPPLIERS CONTROLLER
-  resources :suppliers, only: [ :index, :create, :update ] do
+  resources :suppliers, only: [ :index, :create, :update, :destroy ] do
     collection do
       get :add_new
       post :edit_rec

@@ -1,8 +1,8 @@
 <td class="cell read center">
-  <input type="checkbox" id="#{<%= rec.id %>}" name="brands"
+  <input type="checkbox" id=<%= rec.id %> name="brands"
          data-action="radio-toggle#toggle"
          data-radio-toggle-target="radio"
-         <%= @suppliers.last.id == rec.id ? 'checked' : '' %>
+         <%= st & (@suppliers.last.id == rec.id) ? 'checked' : '' %>
     />
 </td>
 
