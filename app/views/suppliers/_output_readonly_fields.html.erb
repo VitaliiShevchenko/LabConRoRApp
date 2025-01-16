@@ -2,8 +2,6 @@
   <input type="checkbox"
          id=<%= rec.id %>
          name="checkBox"
-         data-action="check-toggle#toggle"
-         data-check-toggle-target="check"
          <%= st & (@suppliers.last.id == rec.id) ? 'checked' : '' %>
     />
 </td>

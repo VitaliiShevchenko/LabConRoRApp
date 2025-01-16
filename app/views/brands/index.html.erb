@@ -32,13 +32,11 @@
         </thead>
         <tbody data-controller="check-toggle">
           <% @brands.each do |rec|%>
-        <tr>
+        <tr data-action="click->check-toggle#clickRow">
             <td class="cell read">
               <input type="checkbox"
                      id=<%= rec.id %>
                      name='checkBox'
-                     data-action="check-toggle#toggle"
-                     data-check-toggle-target="check"
                      <%= @brands.last.id == rec.id ? "checked" : ""%>
                 />
             </td>

@@ -35,7 +35,7 @@
           </thead>
           <tbody data-controller="check-toggle">
           <% @brand_receipts.each do |rec|%>
-            <tr>
+            <tr data-action="click->check-toggle#clickRow">
 
               <% if @brand_receipt || @update_record&.id != rec.id %>
 

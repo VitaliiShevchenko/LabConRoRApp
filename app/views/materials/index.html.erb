@@ -41,7 +41,7 @@
           </thead>
           <tbody data-controller="check-toggle">
           <% @materials.each do |rec|%>
-            <tr>
+            <tr data-action="click->check-toggle#clickRow">
               <%
                 its_readonly_row = @material || @update_record&.id != rec.id
                 st = @update_record.nil? & @user_pushed_add_new.nil?

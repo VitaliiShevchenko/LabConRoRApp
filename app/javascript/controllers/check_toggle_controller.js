@@ -3,15 +3,22 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
     static targets = [ "check" ]
 
-    toggle(event){
-        const clickedCheckBox = event.target
+    clickRow(event) {
+        event.preventDefault()
+        const clickedCheckBox = event.target.parentElement.children[0].children[0]
+        if (clickedCheckBox) {
+
+            this.allCheckBoxesOff()
+            clickedCheckBox.checked = true
+
+            this.changeURL(clickedCheckBox)
+        }
+    }
+
+    allCheckBoxesOff(){
         const checkBoxes = document.querySelectorAll("input[name='checkBox']:checked")
 
         checkBoxes.forEach((checkBox) => checkBox.checked = false )
-
-        clickedCheckBox.checked = true
-
-        this.changeURL(clickedCheckBox)
     }
 
     changeURL (clickedCheckBox) {
