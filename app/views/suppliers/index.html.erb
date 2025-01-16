@@ -75,6 +75,9 @@
         button_to "ADD NEW SUPPLIER",  :add_new_suppliers, class:"btn", method: :get  %><%=
         render 'suppliers/shows_EDIT_DELETE_MATERIALS_buttons' unless @suppliers.empty?
       %>
+      <div class="form-check-toggle-controller">
+        <%= button_to "DASHBOARD", :creator_dashboards, class:"btn", method: :get %>
+      </div>
     </footer>
 
   <% end %>

@@ -68,6 +68,9 @@
         button_to "ADD NEW MATERIAL", add_new_materials_path(id: @supplier.id), class:"btn", method: :post   %><%=
         render 'materials/shows_EDIT_DELETE_MATERIALS_buttons' unless @materials.empty?
       %>
+      <div class="form-check-toggle-controller">
+        <%= button_to "DASHBOARD", :creator_dashboards, class:"btn", method: :get %>
+      </div>
     </footer>
   <% end %>
 </main>

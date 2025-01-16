@@ -68,6 +68,9 @@
       <div class="form-check-toggle-controller">
         <%= button_to "NEXT TABLE", find_brand_receipts_url(id:@brand_receipts), class:"btn", method: :get %>
       </div>
+      <div class="form-check-toggle-controller">
+        <%= button_to "DASHBOARD", :creator_dashboards, class:"btn", method: :get %>
+      </div>
     </footer>
   <% end %>
 </main>
