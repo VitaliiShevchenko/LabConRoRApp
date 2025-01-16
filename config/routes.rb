@@ -72,6 +72,14 @@ Rails.application.routes.draw do
     end
   end
 
+  # RECEIPTS CONTROLLER
+  resource :receipts, only: [ :index, :create, :update, :destroy ] do
+    collection do
+      post :add_new
+      post :edit_rec
+    end
+  end
+
 
   get '*path', to: redirect('/users/sign_in')
 end
