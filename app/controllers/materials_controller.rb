@@ -33,6 +33,21 @@ class MaterialsController < ApplicationController
     render :index
   end
 
+  def edit_rec
+    @update_record = Material.find(params[:id])
+    @supplier = @update_record.supplier
+    @materials = @supplier.material
+    render :index
+  end
+
+  def update
+    update_record = Material.find(params[:id])
+    update_record.update(material_params)
+    @supplier = update_record.supplier
+    @materials = @supplier.material
+    render :index
+  end
+
   private
 
   def material_params
