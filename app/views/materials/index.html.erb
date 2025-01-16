@@ -44,7 +44,7 @@
             <tr>
               <%
                 its_readonly_row = @material || @update_record&.id != rec.id
-                st = @update_record.nil? & @new_material.nil?
+                st = @update_record.nil? & @user_pushed_add_new.nil?
               %>
               <%=
                 if its_readonly_row
@@ -56,16 +56,16 @@
             </tr>
           <% end %>
 
-          <%= render 'materials/add_row_new_material', form: form  if @new_record %>
+          <%= render 'materials/add_row_new_material', form: form  if @user_pushed_add_new %>
 
           </tbody>
         </table>
-        <%= form.submit if @new_record || @update_record %>
+        <%= form.submit if @user_pushed_add_new || @update_record %>
       <% end %>
     </div>
     <footer>
       <%=
-        button_to "ADD NEW MATERIAL", "#", class:"btn", method: :post   %><%=
+        button_to "ADD NEW MATERIAL", add_new_materials_path(id: @supplier.id), class:"btn", method: :post   %><%=
         render 'materials/shows_EDIT_DELETE_MATERIALS_buttons' unless @materials.empty?
       %>
     </footer>

@@ -64,9 +64,9 @@ Rails.application.routes.draw do
   end
 
   # MATERIALS CONTROLLER
-  resources :materials, only: [ :index ] do
+  resources :materials, only: [ :index, :create ] do
     collection do
-      get :add_new
+      post :add_new
       post :edit_rec
       post :find
     end

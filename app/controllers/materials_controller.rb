@@ -2,13 +2,34 @@ class MaterialsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @materials = Material.all
+    @supplier = Supplier.last
+    @materials = @supplier.material
     render :index
+  end
+
+  def create
+    @material = Material.build(material_params)
+    @supplier = Supplier.find_by(id: material_params[:supplier_id])
+    @materials = @supplier.material
+    if @material.save
+      render :index
+    else
+      flash[:alert] = @material.errors.full_messages
+    end
   end
 
   def find
     @supplier = Supplier.find(params[:id])
     @materials = @supplier.material
+    render :index
+  end
+
+  def add_new
+    @user_pushed_add_new = true
+    @supplier = Supplier.find(params[:id])
+    @materials = @supplier.material
+    @material = @materials.build
+    @supplier.material.reload
     render :index
   end
 
