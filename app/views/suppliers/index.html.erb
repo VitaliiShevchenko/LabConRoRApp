@@ -45,9 +45,9 @@
               <th>UPDATED</th>
             </tr>
           </thead>
-          <tbody data-controller="radio-toggle">
+          <tbody data-controller="check-toggle">
           <% @suppliers.each do |rec|%>
-            <tr>
+            <tr data-action="click->check-toggle#clickRow">
               <%
                 its_readonly_row = @supplier || @update_record&.id != rec.id
                 st = @update_record.nil? & @new_supplier.nil?
@@ -75,6 +75,9 @@
         button_to "ADD NEW SUPPLIER",  :add_new_suppliers, class:"btn", method: :get  %><%=
         render 'suppliers/shows_EDIT_DELETE_MATERIALS_buttons' unless @suppliers.empty?
       %>
+      <div class="form-check-toggle-controller">
+        <%= button_to "DASHBOARD", :creator_dashboards, class:"btn", method: :get %>
+      </div>
     </footer>
 
   <% end %>

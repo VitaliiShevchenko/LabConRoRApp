@@ -30,15 +30,13 @@
           <th>updated</th>
         </tr>
         </thead>
-        <tbody data-controller="radio-toggle">
+        <tbody data-controller="check-toggle">
           <% @brands.each do |rec|%>
-        <tr>
+        <tr data-action="click->check-toggle#clickRow">
             <td class="cell read">
               <input type="checkbox"
                      id=<%= rec.id %>
                      name='checkBox'
-                     data-action="radio-toggle#toggle"
-                     data-radio-toggle-target="radio"
                      <%= @brands.last.id == rec.id ? "checked" : ""%>
                 />
             </td>
@@ -73,6 +71,9 @@
       <%= button_to "CREATE NEW BRAND", :new_record_brands, class:"btn", method: :get %>
       <div class="form-check-toggle-controller">
         <%= button_to "NEXT TABLE", find_brand_receipts_url(id:@brands.last), class:"btn", method: :post %>
+      </div>
+      <div class="form-check-toggle-controller">
+        <%= button_to "DASHBOARD", :creator_dashboards, class:"btn", method: :get %>
       </div>
     </footer>
   <% end %>

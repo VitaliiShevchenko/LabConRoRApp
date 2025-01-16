@@ -1,0 +1,12 @@
+<tr>
+  <td class="cell center"><%= form.check_box :select, checked: true %></td>
+  <td class="cell center">*</td>
+  <td class="cell read"><%= form.text_field :name, class:"input-cell"%></td>
+  <td class="cell read"><%= form.text_field :description, class:"input-cell"%></td>
+  <td class="cell read"><%= form.text_field :note, class:"input-cell"%></td>
+  <td class="cell read"><%= form.text_field :price, class:"input-cell"%></td>
+  <td class="cell center"><%= form.check_box :available, class:"input-cell"%></td>
+  <%= form.hidden_field :supplier_id, class:"input-cell" %>
+  <td class="cell center">*</td>
+  <td class="cell center">*</td>
+</tr>

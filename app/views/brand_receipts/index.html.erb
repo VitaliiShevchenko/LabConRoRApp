@@ -33,9 +33,9 @@
               <th>UPDATED</th>
             </tr>
           </thead>
-          <tbody data-controller="radio-toggle">
+          <tbody data-controller="check-toggle">
           <% @brand_receipts.each do |rec|%>
-            <tr>
+            <tr data-action="click->check-toggle#clickRow">
 
               <% if @brand_receipt || @update_record&.id != rec.id %>
 
@@ -67,6 +67,9 @@
       </div>
       <div class="form-check-toggle-controller">
         <%= button_to "NEXT TABLE", find_brand_receipts_url(id:@brand_receipts), class:"btn", method: :get %>
+      </div>
+      <div class="form-check-toggle-controller">
+        <%= button_to "DASHBOARD", :creator_dashboards, class:"btn", method: :get %>
       </div>
     </footer>
   <% end %>
