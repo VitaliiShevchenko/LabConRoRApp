@@ -1,0 +1,21 @@
+<td class="cell read center">
+  <input type="checkbox"
+         id=<%= rec.id %>
+         name='checkBox'
+         data-action="check-toggle#toggle"
+         data-check-toggle-target="check"
+         checked
+    />
+</td>
+
+<td class="cell read"><%= rec.id %></td>
+<td class="cell center"><%= form.check_box :name, class:"input-cell" %></td>
+<td class="cell read"><%= form.text_field :description, class:"input-cell"%></td>
+<td class="cell read"><%= form.text_field :note, class:"input-cell"%></td>
+<td class="cell read"><%= form.text_field :price, class:"input-cell"%></td>
+<td class="cell center">
+  <input <%= rec.available ? 'checked' : '' %> type="checkbox" id="`material_available`" name="material[active]" value="true" />
+</td>
+<%= form.hidden_field :supplier_id, class:"input-cell" %>
+<td class="cell center"><%= rec.created_at %></td>
+<td class="cell center">will appear after saving</td>

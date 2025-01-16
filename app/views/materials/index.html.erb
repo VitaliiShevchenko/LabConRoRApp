@@ -1,0 +1,73 @@
+<main class="container">
+  <%= turbo_frame_tag "creator_dashboard_turbo_frame" do %>
+
+    <%= form_with model: @supplier, url: :suppliers, method: :get do |form| %>
+      <div class="d-flex input-form-brand">
+        <div class="side full">
+          <div class="row mt--10">
+            <button class="btn">SUPPLIERS</button>
+            <label class="label-name name">NAME:</label>
+            <%= form.text_field :name, class: "input-field name" %>
+            <%= form.hidden_field :id %>
+            <label class="label-name use">WEB:</label>
+            <%= form.text_field :website, class: "input-field use" %>
+            <label class="label-name desc">PRODUCT LIST:</label>
+            <%= form.text_field :product_list, class: "input-field desc" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="panel-tbl-brands">
+      <%
+        model = @update_record || @material || @materials
+        url =  materials_path
+        url =  material_path(@update_record) if @update_record
+        method = :put if @update_record
+      %>
+      <%= form_with model: , url: , method:  do |form| %>
+        <table>
+          <thead>
+          <tr>
+            <th>SELECT</th>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>DESCRIPTION/th>
+            <th>NOTE</th>
+            <th>PRICE</th>
+            <th>AVAILABLE</th>
+            <th>CREATED</th>
+            <th>UPDATED</th>
+          </tr>
+          </thead>
+          <tbody data-controller="radio-toggle">
+          <% @materials.each do |rec|%>
+            <tr>
+              <%
+                its_readonly_row = @material || @update_record&.id != rec.id
+                st = @update_record.nil? & @new_material.nil?
+              %>
+              <%=
+                if its_readonly_row
+                  render 'materials/output_readonly_fields', rec: rec, materials: @materials, st:
+                else
+                  render 'materials/output_update_fields', rec: rec, form: form
+                end
+              %>
+            </tr>
+          <% end %>
+
+          <%= render 'materials/add_row_new_material', form: form  if @new_record %>
+
+          </tbody>
+        </table>
+        <%= form.submit if @new_record || @update_record %>
+      <% end %>
+    </div>
+    <footer>
+      <%=
+        button_to "ADD NEW MATERIAL", "#", class:"btn", method: :post   %><%=
+        render 'materials/shows_EDIT_DELETE_MATERIALS_buttons' unless @materials.empty?
+      %>
+    </footer>
+  <% end %>
+</main>
