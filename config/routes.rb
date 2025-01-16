@@ -32,9 +32,7 @@ Rails.application.routes.draw do
   resources :creator_dashboards, only: [ :index ] do
     collection do
       get :receipts
-      get :materials
       get :tests
-      # get :new_record
     end
   end
 
@@ -62,7 +60,15 @@ Rails.application.routes.draw do
       get :add_new
       post :edit_rec
       patch :find
-      post :find_materials # temporary, need to move into the MATERIALS_CONTROLLER
+    end
+  end
+
+  # MATERIALS CONTROLLER
+  resources :materials, only: [ :index ] do
+    collection do
+      get :add_new
+      post :edit_rec
+      post :find
     end
   end
 
