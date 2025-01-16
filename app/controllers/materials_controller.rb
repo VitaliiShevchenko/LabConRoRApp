@@ -48,6 +48,14 @@ class MaterialsController < ApplicationController
     render :index
   end
 
+  def destroy
+    material = Material.find(params[:id])
+    material.destroy
+    @supplier = material.supplier
+    @materials = @supplier.material.reload
+    render :index
+  end
+
   private
 
   def material_params
