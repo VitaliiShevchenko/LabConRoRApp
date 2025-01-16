@@ -30,15 +30,15 @@
           <th>updated</th>
         </tr>
         </thead>
-        <tbody data-controller="radio-toggle">
+        <tbody data-controller="check-toggle">
           <% @brands.each do |rec|%>
         <tr>
             <td class="cell read">
               <input type="checkbox"
                      id=<%= rec.id %>
                      name='checkBox'
-                     data-action="radio-toggle#toggle"
-                     data-radio-toggle-target="radio"
+                     data-action="check-toggle#toggle"
+                     data-check-toggle-target="check"
                      <%= @brands.last.id == rec.id ? "checked" : ""%>
                 />
             </td>
