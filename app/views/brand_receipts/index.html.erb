@@ -57,17 +57,10 @@
       <% end %>
     </div>
     <footer>
-      <%= button_to "ADD NEW RECEIPT", new_receipt_brand_receipts_url(id:@brand.id), class:"btn", method: :post  %>
-      <div class="form-check-toggle-controller">
-        <%= button_to "EDIT SELECTED RECEIPT", edit_rec_brand_receipts_url(id:@brand_receipts.last),
-                      class:"btn",
-                      method: :post,
-                      disabled: @brand_receipts.count == 0 %>,
-        %>
-      </div>
-      <div class="form-check-toggle-controller">
-        <%= button_to "NEXT TABLE", find_brand_receipts_url(id:@brand_receipts), class:"btn", method: :get %>
-      </div>
+      <%=
+        button_to "ADD NEW RECEIPT", new_receipt_brand_receipts_url(id: @brand.id), class:"btn"  %><%=
+        render 'brand_receipts/shows_EDIT_DELETE_BRAND_RECEIPT_buttons' unless @brand_receipts  .empty?
+    %>
       <div class="form-check-toggle-controller">
         <%= button_to "DASHBOARD", :creator_dashboards, class:"btn", method: :get %>
       </div>

@@ -47,6 +47,12 @@ class BrandReceiptsController < ApplicationController
     render :index
   end
 
+  def destroy
+    @brand_receipt = BrandReceipt.find(params[:id])
+    @brand_receipt.destroy
+    index
+  end
+
   private
 
   def permit_params

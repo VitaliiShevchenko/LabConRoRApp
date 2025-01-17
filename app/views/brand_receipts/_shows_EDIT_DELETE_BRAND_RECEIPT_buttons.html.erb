@@ -1,0 +1,18 @@
+
+<div class="form-check-toggle-controller">
+  <%= button_to "EDIT SELECTED RECEIPT", edit_rec_brand_receipts_url(id: @brand_receipts.last),
+                class:"btn",
+                method: :post
+  %>
+</div>
+<div class="form-check-toggle-controller">
+  <%= button_to "DELETE SELECTED MATERIAL", brand_receipt_url(id: @brand_receipts.last),
+                class:"btn",
+                data: { turbo_confirm: "\nDelete selected brand receipt?\n\n Are you sure?" },
+                method: :delete
+  %>
+</div>
+
+<div class="form-check-toggle-controller">
+  <%= button_to "NEXT RECEIPT's TABLE", find_receipts_url(brand_receipt_id:@brand_receipts.last), class:"btn" %>
+</div>
