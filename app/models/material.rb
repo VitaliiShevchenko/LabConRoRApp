@@ -3,4 +3,9 @@ class Material < ApplicationRecord
 
   validates :name, presence: true
   validates :price, presence: true
+
+
+  def self.get_available_materials
+    where available: true
+  end
 end
