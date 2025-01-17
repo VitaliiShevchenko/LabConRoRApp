@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_15_224802) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_17_094737) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -121,15 +121,20 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_15_224802) do
     t.boolean "available"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "density"
     t.index ["supplier_id"], name: "index_materials_on_supplier_id"
   end
 
   create_table "receipts", force: :cascade do |t|
     t.bigint "brand_receipt_id", null: false
     t.bigint "material_id", null: false
-    t.float "amount"
+    t.float "amount_g"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "short_name"
+    t.float "sum_S"
+    t.float "volume_cc"
+    t.string "note"
     t.index ["brand_receipt_id"], name: "index_receipts_on_brand_receipt_id"
     t.index ["material_id"], name: "index_receipts_on_material_id"
   end
