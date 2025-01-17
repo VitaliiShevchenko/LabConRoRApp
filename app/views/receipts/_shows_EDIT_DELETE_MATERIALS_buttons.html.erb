@@ -1,0 +1,13 @@
+<div class="form-check-toggle-controller">
+  <%= button_to "EDIT SELECTED MATERIAL", edit_rec_receiptss_url(id: @receipts.last),
+                class:"btn",
+                method: :post
+  %>
+</div>
+<div class="form-check-toggle-controller">
+  <%= button_to "DELETE SELECTED MATERIAL", receipt_url(id: @receipts&.last),
+                class:"btn",
+                data: { turbo_confirm: "\nDelete selected material?\n\n Are you sure?" },
+                method: :delete
+  %>
+</div>
