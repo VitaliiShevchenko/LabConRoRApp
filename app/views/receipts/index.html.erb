@@ -1,12 +1,13 @@
 <main class="container">
   <%= turbo_frame_tag "creator_dashboard_turbo_frame" do %>
 
-    <%= form_with model: @brand_reciept, url: :brand_receipts, method: :get do |form| %>
+      <%= form_with model: @brand, url: :brand_receipts, method: :get do |form| %>
       <div class="d-flex input-form-brand">
         <div class="side full">
           <div class="row mt--10">
-            <button class="btn">RECEIPT #<%= @brand_receipt.id %></button>
-            <label class="label-name name">BRAND NAME:</label>
+            <button class="btn">RECEIPTS</button>
+            <label class="label-name name">RECEIPT #<%= @brand_receipt.receipt_num %></label>
+            <label class="label-name name">BRAND:</label>
             <%= form.text_field :name, class: "input-field name" %>
             <%= form.hidden_field :id %>
             <label class="label-name use">USE:</label>
@@ -21,7 +22,7 @@
       <%
         model = @update_record || @receipt || @receipts
         url =  receipts_path
-        url =  receip_path(@update_record) if @update_record
+        url =  receipts_path(id:@update_record) if @update_record
         method = :put if @update_record
       %>
       <%= form_with model: , url: , method:  do |form| %>
@@ -40,15 +41,15 @@
             </tr>
           </thead>
           <tbody data-controller="check-toggle">
-          <% @brand_receipts.each.with_index(1) do |rec, index| %>
+          <% @receipts.each.with_index(1) do |rec, index| %>
             <tr data-action="click->check-toggle#clickRow">
               <%
-                its_readonly_row = @material || @update_record&.id != rec.id
+                its_readonly_row = @receipt || @update_record&.id != rec.id
                 st = @update_record.nil? & @user_pushed_add_new.nil?
               %>
               <%=
                 if its_readonly_row
-                  render 'receipts/output_readonly_fields', rec:, materials: @materials, st:, index:
+                  render 'receipts/output_readonly_fields', rec:, receipts: @receipts, st:, index:
                 else
                   render 'receipts/output_update_fields', rec: , form: , index:
                 end
@@ -56,7 +57,7 @@
             </tr>
           <% end %>
 
-          <%= render( 'receipts/add_row_new_material', form: ) if @user_pushed_add_new %>
+          <%= render( 'receipts/add_row_new_receipt', form: ) if @user_pushed_add_new %>
 
           </tbody>
         </table>
@@ -66,7 +67,7 @@
     <footer>
       <%=
         button_to "ADD NEW MATERIAL", add_new_receipts_path(id: @brand_receipt.id), class:"btn", method: :post   %><%=
-        render 'materials/shows_EDIT_DELETE_MATERIALS_buttons' unless @receipts.empty?
+        render 'receipts/shows_EDIT_DELETE_MATERIALS_buttons' unless @receipts.empty?
       %>
       <div class="form-check-toggle-controller">
         <%= button_to "DASHBOARD", :creator_dashboards, class:"btn", method: :get %>

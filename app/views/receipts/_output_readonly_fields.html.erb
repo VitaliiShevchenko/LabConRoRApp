@@ -2,12 +2,12 @@
   <input type="checkbox"
          id=<%= rec.id %>
          name='checkBox'
-         <%= @brand_receipts.last.id == rec.id ? "checked" : ""%>
+         <%= st & (@receipts.last.id == rec.id) ? "checked" : ""%>
     />
 </td>
 <td class="cell read"><%= index %></td>
 <td class="cell read"><%= rec.short_name %></td>
-<td class="cell read"><%= rec.material %></td>
+<td class="cell read"><%= to_double_name(rec.material_id)%></td>
 <td class="cell read"><%= rec.amount_g %></td>
 <td class="cell read"><%= rec.note %></td>
 <td class="cell read"><%= rec.sum_S %></td>
