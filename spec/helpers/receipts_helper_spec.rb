@@ -22,7 +22,7 @@ RSpec.describe ReceiptsHelper, type: :helper do
       material[:available] = true
       supplier.save
       material.save
-      expect(helper.select_material).to eq [ [ material[:name], material[:id] ] ]
+      expect(helper.select_material).to eq [ [ "#{material[:name]} | #{supplier[:name]}", material[:id] ] ]
     end
   end
 
@@ -45,5 +45,27 @@ RSpec.describe ReceiptsHelper, type: :helper do
       expect(helper.select_material).to eq []
     end
   end
+  end
+
+  describe "#to_double_namw" do
+    let(:supplier) { Supplier.create name: 'Supplier Name', active: nil, id: 1 }
+    let(:material) { Material.create name: 'Material',  description: 'Material Description',   price: 10.00,
+                                     note: 'Material Note', supplier_id: supplier[:id], id: 1, available: nil }
+
+    context 'when material is exist' do
+      it "converts material_id to special double name" do
+        supplier.save
+        material.save
+        expect(helper.to_double_name(material[:id])).to eq "#{material.name} | #{supplier.name}"
+      end
+    end
+
+    context "when material isn't exist" do
+      it "return nil" do
+        supplier.save
+        material.save
+        expect(helper.to_double_name(0)).to eq nil
+      end
+    end
   end
 end
