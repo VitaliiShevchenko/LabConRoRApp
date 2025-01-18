@@ -31,7 +31,6 @@ Rails.application.routes.draw do
   # CREATOR_DASHBOARDS
   resources :creator_dashboards, only: [ :index ] do
     collection do
-      get :receipts
       get :tests
     end
   end
@@ -41,12 +40,12 @@ Rails.application.routes.draw do
     collection do
       post :create_brand
       post :find_brand
-      get :new_record
+      get  :new_record
     end
   end
 
   # BRAND_RECEIPTS CONTROLLER
-  resources :brand_receipts, only: [ :index, :create, :update ] do
+  resources :brand_receipts, only: [ :index, :create, :update, :destroy ] do
     collection do
       post :find
       post :new_receipt
@@ -57,8 +56,8 @@ Rails.application.routes.draw do
   # SUPPLIERS CONTROLLER
   resources :suppliers, only: [ :index, :create, :update, :destroy ] do
     collection do
-      get :add_new
-      post :edit_rec
+      get   :add_new
+      post  :edit_rec
       patch :find
     end
   end
@@ -75,8 +74,10 @@ Rails.application.routes.draw do
   # RECEIPTS CONTROLLER
   resource :receipts, only: [ :index, :create, :update, :destroy ] do
     collection do
-      post :add_new
+      post :find
       post :edit_rec
+      post :add_new
+      get  :index
     end
   end
 
