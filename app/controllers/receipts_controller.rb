@@ -27,7 +27,12 @@ class ReceiptsController < ApplicationController
   end
 
   def destroy
-    render :index
+    @receipt = Receipt.find(params[:id])
+    if @receipt.destroy
+      index
+    else
+      flash.now[:error] = @receipt.errors.full_messages.to_sentence
+    end
   end
 
   def find
