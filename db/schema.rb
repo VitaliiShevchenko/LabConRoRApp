@@ -128,7 +128,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_17_094737) do
   create_table "receipts", force: :cascade do |t|
     t.bigint "brand_receipt_id", null: false
     t.bigint "material_id", null: false
-    t.float "amount_g"
+    t.float "amount_kg"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "short_name"
