@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Receipt, type: :model do
-  describe "#get_material_supplier_str" do
-    let(:supplier) { Supplier.create name: 'Supplier Name', active: nil, id: 1 }
+  describe "#join_mt_sp_names" do
+    let(:supplier) { Supplier.create name: 'Supplier Name', active: nil }
     let(:material) { Material.create name: 'Material',  description: 'Material Description',   price: 10.00,
-                                     note: 'Material Note', supplier_id: nil, id: 1, available: nil }
+                                     density: 20.00, note: 'Material Note', supplier_id: nil, available: nil }
     let(:receipt) { Receipt.create material_id: material.id, id: 1 }
 
     before(:each) do
@@ -22,6 +22,32 @@ RSpec.describe Receipt, type: :model do
       it "return nil" do
         receipt[:material_id] = nil
         expect(receipt.join_mt_sp_names ).to eq nil
+      end
+    end
+  end
+
+  describe ".sum" do
+    let!(:supplier) { Supplier.create name: 'Supplier Name', active: nil }
+    let!(:material) { Material.create name: 'Material',  description: 'Material Description', density: 6.0, price: 10.00,
+                                      available: true, supplier_id: supplier[:id] }
+    let!(:receipt) { Receipt.create material_id: material[:id], amount_kg: 50, sum_s: 0 }
+
+    context "when looks intrinsic" do
+      it "returns 0.5" do
+        expect(receipt.sum_s).to eq 0.5
+      end
+    end
+  end
+
+  describe ".volume_cc" do
+    let!(:supplier) { Supplier.create name: 'Supplier Name', active: nil }
+    let!(:material) { Material.create name: 'Material',  description: 'Material Description', density: 6.0, price: 10.00,
+                                      available: true, supplier_id: supplier[:id] }
+    let!(:receipt) { Receipt.create material_id: material[:id], amount_kg: 50, sum_s: 0 }
+
+    context "when looks intrinsic" do
+      it "returns 300" do
+        expect(receipt.volume_cc).to eq 300
       end
     end
   end
