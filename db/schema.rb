@@ -132,7 +132,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_17_094737) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "short_name"
-    t.float "sum_S"
+    t.float "sum_s"
     t.float "volume_cc"
     t.string "note"
     t.index ["brand_receipt_id"], name: "index_receipts_on_brand_receipt_id"
