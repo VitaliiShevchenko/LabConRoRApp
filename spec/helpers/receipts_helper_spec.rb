@@ -22,7 +22,7 @@ RSpec.describe ReceiptsHelper, type: :helper do
       material[:available] = true
       supplier.save
       material.save
-      expect(helper.select_material).to eq [ [ "#{material[:name]} | #{supplier[:name]}", material[:id] ] ]
+      expect(helper.select_mt_sp_names).to eq [ [ "#{material[:name]} | #{supplier[:name]}", material[:id] ] ]
     end
   end
 
@@ -32,7 +32,7 @@ RSpec.describe ReceiptsHelper, type: :helper do
       material[:available] = false
       supplier.save
       material.save
-      expect(helper.select_material).to eq []
+      expect(helper.select_mt_sp_names).to eq []
     end
   end
 
@@ -42,12 +42,12 @@ RSpec.describe ReceiptsHelper, type: :helper do
       material[:available] = true
       supplier.save
       material.save
-      expect(helper.select_material).to eq []
+      expect(helper.select_mt_sp_names).to eq []
     end
   end
   end
 
-  describe "#to_double_namw" do
+  describe "#to_double_name with attr: material_id" do
     let(:supplier) { Supplier.create name: 'Supplier Name', active: nil, id: 1 }
     let(:material) { Material.create name: 'Material',  description: 'Material Description',   price: 10.00,
                                      note: 'Material Note', supplier_id: supplier[:id], id: 1, available: nil }

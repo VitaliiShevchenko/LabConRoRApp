@@ -8,7 +8,7 @@
 <td class="cell read"><%= index %></td>
 <%= form.hidden_field :id, value: rec.id %>
 <td class="cell read"><%= form.text_field :short_name, value: rec.short_name %></td>
-<td class="cell"><%= form.select :material_id, select_material, class:"input-cell" %></td>
+<td class="cell"><%= form.select :material_id, select_mt_sp_names, class:"input-cell" %></td>
 <td class="cell read"><%= form.number_field :amount_g, value: rec.amount_g %></td>
 <td class="cell read"><%= form.text_field :note, value: rec.note %></td>
 <td class="cell read"><%= form.number_field :sum_S, value: rec.sum_S %></td>
