@@ -56,7 +56,7 @@ body {
         padding: 5px;
       }
       .label-name {
-        width: 115px;
+        max-width: 135px;
         text-align: right;
         display: inline-block;
         &.use {
@@ -78,6 +78,11 @@ body {
         &.desc {
           width: 35vw;
         }
+      }
+      .brand-receipt {
+        padding: 10px 5px 3px 5px;
+        background-color: white;
+        width: auto;
       }
     }
   }

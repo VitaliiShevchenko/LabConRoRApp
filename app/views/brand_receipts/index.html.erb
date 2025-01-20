@@ -6,12 +6,10 @@
           <div class="row mt--10">
             <button class="btn">BRANDS</button>
             <label class="label-name name">BRAND NAME:</label>
-            <%= form.text_field :name, class: "input-field name" %>
-            <%= form.hidden_field :id %>
+            <span class="brand-receipt" ><%= @brand.name %></span>
+            <span class="brand-receipt" ><%= @brand.description %></span>
             <label class="label-name use">USE:</label>
-            <%= form.text_field :intended_use, class: "input-field use" %>
-            <label class="label-name desc">DESC:</label>
-             <%= form.text_field :description, class: "input-field desc" %>
+            <span class="brand-receipt" ><%= @brand.intended_use %></span>
           </div>
         </div>
       </div>

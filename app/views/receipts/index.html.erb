@@ -1,19 +1,16 @@
 <main class="container">
   <%= turbo_frame_tag "creator_dashboard_turbo_frame" do %>
 
-      <%= form_with model: @brand, url: :brand_receipts, method: :get do |form| %>
+      <%= form_with model: @brand_receipt.brand, url: find_brand_receipts_path(id: @brand_receipt.brand.id ), method: :post do |form| %>
       <div class="d-flex input-form-brand">
         <div class="side full">
           <div class="row mt--10">
             <button class="btn">RECEIPTS</button>
-            <label class="label-name name">RECEIPT #<%= @brand_receipt.receipt_num %></label>
-            <label class="label-name name">BRAND:</label>
-            <%= form.text_field :name, class: "input-field name" %>
-            <%= form.hidden_field :id %>
+            <label class="label-name name">BRAND RECEIPT:</label>
+            <span class="brand-receipt" ><%= "#{@brand_receipt.brand.name} ##{@brand_receipt.receipt_num}" %></span>
+            <span class="brand-receipt" ><%= @brand_receipt.brand.description %></span>
             <label class="label-name use">USE:</label>
-            <%= form.text_field :id, class: "input-field use" %>
-            <label class="label-name desc">DESC:</label>
-             <%= form.text_field :description, class: "input-field desc" %>
+            <span class="brand-receipt" ><%= @brand_receipt.brand.intended_use %></span>
           </div>
         </div>
       </div>
