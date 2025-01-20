@@ -46,7 +46,7 @@
             <td class="cell read"><%= rec.description%></td>
             <td class="cell read"><%= rec.calculated_cost %></td>
             <td class="cell read"><%= rec.created_at %></td>
-            <td class="cell read"><%= rec.updated_at %></td>
+            <td class="cell read"><%= time_ago_in_words rec.updated_at %></td>
         </tr>
         <% end %>
         <% if @status_new_rec %>
