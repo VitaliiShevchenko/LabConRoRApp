@@ -10,6 +10,6 @@
 <td class="cell read"><%= rec.name %></td>
 <td class="cell read"><%= rec.intended_use %></td>
 <td class="cell read"><%= rec.description %></td>
-<td class="cell read"><%= rec.calculated_cost %></td>
+<td class="cell read"><%= number_to_currency rec.calculated_cost %></td>
 <td class="cell read"><%= rec.created_at %></td>
 <td class="cell read"><%= time_ago_in_words rec.updated_at %></td>
