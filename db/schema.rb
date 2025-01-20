@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_17_094737) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_20_182228) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_17_094737) do
     t.integer "receipt_num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "calculated_cost"
     t.index ["brand_id"], name: "index_brand_receipts_on_brand_id"
   end
 

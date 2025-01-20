@@ -1,10 +1,11 @@
 <tr>
   <td class="cell center">*</td>
   <td class="cell center">*</td>
+  <td class="cell"><%= form.number_field :receipt_num, class:"input-cell" %></td>
   <td class="cell"><%= form.number_field :density, class:"input-cell", in: 1.00..3.00, step: 0.01 %></td>
   <td class="cell"><%= form.number_field :hardnessShA, class:"input-cell", in: 1..100 %></td>
   <td class="cell"><%= form.number_field :hardnessShD, class:"input-cell", in: 1..100 %></td>
-  <td class="cell"><%= form.number_field :receipt_num, class:"input-cell" %></td>
+  <td class="cell"><%= form.number_field :calculated_cost, class:"input-cell" %></td>
    <%= form.hidden_field :brand_id, class:"input-cell" %>
   <td class="cell center">*</td>
   <td class="cell center">*</td>

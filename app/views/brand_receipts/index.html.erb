@@ -23,10 +23,11 @@
             <tr>
               <th>SELECT</th>
               <th>ID</th>
+              <th>RECEIPT NUMBER</th>
               <th>DENSITY</th>
               <th>SHORE A</th>
               <th>SHORE D</th>
-              <th>RECEIPT NUMBER</th>
+              <th>CALCULATED COST</th>
               <th>CREATED</th>
               <th>UPDATED</th>
             </tr>
@@ -47,7 +48,7 @@
             </tr>
           <% end %>
 
-          <%= render 'brand_receipts/new_record', form: form  if @new_record %>
+          <%= render 'brand_receipts/new_record', form: form if @new_record %>
 
           </tbody>
         </table>
