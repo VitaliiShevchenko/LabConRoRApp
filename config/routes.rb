@@ -36,8 +36,9 @@ Rails.application.routes.draw do
   end
 
   # BRANDS CONTROLLER
-  resources :brands, only: [ :index ] do
+  resources :brands, only: [ :index, :create, :update, :destroy ] do
     collection do
+      post :edit_rec
       post :create_brand
       post :find_brand
       get  :new_record

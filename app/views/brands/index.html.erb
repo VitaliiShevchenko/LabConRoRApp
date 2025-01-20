@@ -1,77 +1,66 @@
 <main class="container">
   <%= turbo_frame_tag "creator_dashboard_turbo_frame" do %>
-    <%= form_with model: @brand, url: :find_brand_brands do |form| %>
+    <% model = @update_record || @brand || @brands %>
+    <%= form_with model: , url: :find_brand_brands do |form| %>
       <div class="d-flex input-form-brand">
         <div class="side">
           <div class="row">
             <label class="label-name">FIND WORD:</label>
-            <%= form.text_field :find, class: "input-field" %>
+            <%= form.text_field :name, class: "input-field", value:"" %>
           </div>
         </div>
-        <div class="">
-          <div class="">
             <button class="btn find">FIND</button>
-          </div>
         </div>
-      </div>
     <% end %>
     <div class="panel-tbl-brands">
-      <%= form_with model: @brand, url: :create_brand_brands do |form|   %>
-      <table>
-        <thead>
-        <tr>
-          <th>select</th>
-          <th>id</th>
-          <th>name</th>
-          <th>intended use</th>
-          <th>description</th>
-          <th>calc cost</th>
-          <th>created</th>
-          <th>updated</th>
-        </tr>
-        </thead>
-        <tbody data-controller="check-toggle">
-          <% @brands.each do |rec|%>
-        <tr data-action="click->check-toggle#clickRow">
-            <td class="cell read">
-              <input type="checkbox"
-                     id=<%= rec.id %>
-                     name='checkBox'
-                     <%= @brands.last.id == rec.id ? "checked" : ""%>
-                />
-            </td>
-            <td class="cell read"><%= rec.id %></td>
-            <td class="cell read"><%= rec.name %></td>
-            <td class="cell read"><%= rec.intended_use %></td>
-            <td class="cell read"><%= rec.description%></td>
-            <td class="cell read"><%= rec.calculated_cost %></td>
-            <td class="cell read"><%= rec.created_at %></td>
-            <td class="cell read"><%= time_ago_in_words rec.updated_at %></td>
-        </tr>
-        <% end %>
-        <% if @status_new_rec %>
+      <%
+        url =  create_brand_brands_path
+        url =  create_brand_brands_path(id:@update_record) if @update_record
+        method = :put if @update_record
+      %>
+      <%= form_with model: , url: , method: do |form|  %>
+        <table>
+          <thead>
           <tr>
-              <td class="cell center">*</td>
-              <td class="cell center">*</td>
-              <td class="cell"><%= form.text_field :name, class:"input-cell"%></td>
-              <td class="cell"><%= form.text_field :intended_use, class:"input-cell" %></td>
-              <td class="cell"><%= form.text_field :description, class:"input-cell" %></td>
-              <td class="cell"><%= form.text_field :calculated_cost, class:"input-cell" %></td>
-              <td class="cell hidden"><%= form.hidden_field :creator_id, class:"input-cell" %></td>
-              <td class="cell center">*</td>
-              <td class="cell center">*</td>
+            <th>select</th>
+            <th>id</th>
+            <th>name</th>
+            <th>intended use</th>
+            <th>description</th>
+            <th>calc cost</th>
+            <th>created</th>
+            <th>updated</th>
           </tr>
-        <% end %>
-        </tbody>
-      </table>
-        <%= form.submit if @status_new_rec%>
+          </thead>
+          <tbody data-controller="check-toggle">
+          <% @brands.each do |rec|%>
+            <%
+              its_readonly_row = @brand || @update_record&.id != rec.id
+              st = @update_record.nil? & @new_brand.nil?
+            %>
+            <tr data-action=<%= "click->check-toggle#clickRow" if its_readonly_row %>>
+              <%=
+                if its_readonly_row
+                  render 'brands/output_readonly_fields', rec: , st:
+                else
+                  render 'brands/output_update_fields', rec: , form:
+                end
+              %>
+            </tr>
+          <% end %>
+
+          <%= render 'brands/add_row_new_brand', form: form  if @new_brand %>
+
+          </tbody>
+        </table>
+        <%= form.submit if @new_brand || @update_record %>
     <% end %>
     </div>
     <footer>
-      <%= button_to "CREATE NEW BRAND", :new_record_brands, class:"btn", method: :get %>
-      <div class="form-check-toggle-controller">
-        <%= button_to "NEXT TABLE", find_brand_receipts_url(id:@brands.last), class:"btn", method: :post %>
-      </div>
+      <%=
+        button_to "ADD NEW BRAND",  :new_record_brands, class:"btn", method: :get  %><%=
+      render 'brands/shows_EDIT_DELETE_BRAND_buttons' unless @brands.empty?
+    %>
       <div class="form-check-toggle-controller">
         <%= button_to "DASHBOARD", :creator_dashboards, class:"btn", method: :get %>
       </div>
