@@ -10,8 +10,7 @@ class BrandsController < ApplicationController
     if brand.errors.any?
       flash[:alert] = brand.errors.full_messages.first
     else
-      @brands = Brand.all
-      render :index
+      redirect_to :brands
     end
   end
 

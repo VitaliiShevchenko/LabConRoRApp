@@ -57,7 +57,7 @@
     <footer>
       <%=
         button_to "ADD NEW RECEIPT", new_receipt_brand_receipts_url(id: @brand.id), class:"btn"  %><%=
-        render 'brand_receipts/shows_EDIT_DELETE_BRAND_RECEIPT_buttons' unless @brand_receipts  .empty?
+        render 'brand_receipts/shows_EDIT_DELETE_BRAND_RECEIPT_buttons' unless @brand_receipts.empty?
     %>
       <div class="form-check-toggle-controller">
         <%= button_to "DASHBOARD", :creator_dashboards, class:"btn", method: :get %>
