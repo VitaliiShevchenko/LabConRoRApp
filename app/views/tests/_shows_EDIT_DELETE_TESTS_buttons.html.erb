@@ -7,7 +7,7 @@
 <div class="form-check-toggle-controller">
   <%= button_to "DELETE SELECTED TEST", tests_url(id: @tests.last),
                 class:"btn",
-                data: { turbo_confirm: "\nDelete selected material?\n\n Are you sure?" },
+                data: { turbo_confirm: "\nDelete selected test?\n\n Are you sure?" },
                 method: :delete
   %>
 </div>

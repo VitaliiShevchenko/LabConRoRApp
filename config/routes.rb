@@ -25,9 +25,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  # EXAMINATIONS CONTROLLER
-  resources :examinations
-
   # CREATOR_DASHBOARDS
   resources :creator_dashboards, only: [ :index ] do
     collection do
@@ -90,6 +87,16 @@ Rails.application.routes.draw do
         post :add_new
         get  :index
       end
+    end
+
+  # EXAMINATIONS CONTROLLER
+  resource :examinations, only: [ :index, :create, :update, :destroy ] do
+    collection do
+      post :find
+      post :edit_rec
+      post :add_new
+      get  :index
+    end
   end
 
 

@@ -23,6 +23,17 @@ body {
   margin-top:-15px;
 }
 
+.mt8 {
+  margin-top: 8px;
+}
+
+.dashboard {
+  table tr td {
+    background-color: transparent;
+    border:0;
+  }
+}
+
 .up-case {
   text-transform: uppercase;
 }

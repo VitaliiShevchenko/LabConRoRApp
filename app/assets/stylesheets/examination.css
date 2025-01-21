@@ -1,0 +1,140 @@
+
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     scroll-margin-inline: 0px;
+ }
+/*body , html{*/
+/*    height: 100vh;*/
+/*    margin-top: -9px;*/
+/*}*/
+
+input, td{
+    background-color: white;
+    padding: 0;
+}
+
+table thead, th {
+    background: #ffff00 !important;
+}
+
+.cell {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    height: 100vh; /* Takes up the entire height of the window */
+    width: 100vw;
+}
+
+.box input{
+    width: 100px;
+}
+
+.box .inp {
+    width: 100px;
+    background-color: antiquewhite;
+    padding: 4px;
+    margin: 7px;
+}
+
+.left_panel {
+    width: 125px;
+    background-color: #90ee90;
+    text-align: center;
+}
+
+.left_panel .circle {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(green, lime);
+    border-radius: 50%;
+    border: 4px solid #000;
+    margin: 30px auto;
+    margin-bottom: 35px;
+}
+
+.left_panel .btn-impo {
+    width: 75px;
+    height: 75px;
+    margin: 25px 0;
+    box-shadow: 2px 2px 7px black;
+    transition: .3s;
+}
+
+.left_panel .btn-impo:hover {
+    outline: none;
+    box-shadow: none;
+}
+
+.right_panel {
+    width: 125px;
+    background-color: #90ee90;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.right_panel .btn-impo {
+    width: 75px;
+    height: 75px;
+    margin: 25px 0;
+    box-shadow: 2px 2px 7px black;
+    transition: .3s;
+}
+
+.right_panel .btn-impo:hover {
+    outline: none;
+    box-shadow: none;
+}
+
+.right-container {
+    display: grid;
+    grid-template-rows: 50px 1fr; /* 2 is 100px high, 3 will take up the rest of the space */
+    flex-grow: 1; /* Takes up all the space on the right */
+}
+
+.upper_panel {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #90ee90;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.main_panel {
+    background-color: #eee990;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+}
+
+.lower_panel {
+    display: flex;
+    gap: 63px;
+    flex-wrap: nowrap; /* Allows you to move to a new line */
+    background-color: #90ee90;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+.lower_panel table {
+    border: 2px solid rgb(140 140 140);
+}
+
+.lower_panel table th, td {
+    width: 150px;
+    border: 1px solid rgb(160 160 160);
+    text-wrap: nowrap;
+    text-align: center;
+    font-size: 16px;
+}
+
+.lower_panel table tr td input[type="text"] {
+    width: 100%;
+}

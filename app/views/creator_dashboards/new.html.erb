@@ -1,5 +1,6 @@
 <main class="container">
   <%= turbo_frame_tag "creator_dashboard_turbo_frame" do %>
+    <div class="dashboard">
     <table>
       <tr>
         <td>
@@ -18,7 +19,7 @@
           </button>
         </td>
       </tr>
-      <tr>
+      <tr class="big-row">
         <td>
           <button class="button-big">
             <%= link_to 'SUPPLIERS', :suppliers, method: :get%>
@@ -35,5 +36,6 @@
           </button>
         </td>
     </table>
+    </div>
   <% end %>
 </main>
