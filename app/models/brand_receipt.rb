@@ -1,7 +1,7 @@
 class BrandReceipt < ApplicationRecord
   belongs_to :brand
-  has_many   :receipts
-  has_many   :tests
+  has_many   :receipts, dependent: :restrict_with_error
+  has_many   :tests,    dependent: :restrict_with_error
 
   def calculated_cost
     total_s = receipts.inject(0) { |sum, receipt| sum + receipt.sum_s }

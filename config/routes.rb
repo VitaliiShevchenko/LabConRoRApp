@@ -82,6 +82,16 @@ Rails.application.routes.draw do
     end
   end
 
+    # TESTS CONTROLLER
+    resource :tests, only: [ :index, :create, :update, :destroy ] do
+      collection do
+        post :find
+        post :edit_rec
+        post :add_new
+        get  :index
+      end
+  end
+
 
   get '*path', to: redirect('/users/sign_in')
 end
