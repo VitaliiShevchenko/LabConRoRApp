@@ -1,0 +1,17 @@
+<td class="cell read">
+  <input type="checkbox"
+         id=<%= rec.id %>
+         name='checkBox'
+         checked
+    />
+</td>
+<td class="cell read"><%= index %></td>
+<%= form.hidden_field :id, value: rec.id %>
+<td class="cell read"><%= form.text_field :short_name, value: rec.short_name %></td>
+<td class="cell"><%= form.select :material_id, select_mt_sp_names, class:"input-cell" %></td>
+<td class="cell read"><%= form.number_field :amount_kg, value: rec.amount_kg, in: 0.0..1000000.00000, step: 0.00001  %></td>
+<td class="cell read"><%= form.text_field :note, value: rec.note %></td>
+<td class="cell read"><%= rec.sum_s %></td>
+<%= form.hidden_field :brand_receipt_id, value: @brand_receipt.id %>
+<td class="cell read"><%= rec.volume_cc %></td>
+<td class="cell read">after update</td>

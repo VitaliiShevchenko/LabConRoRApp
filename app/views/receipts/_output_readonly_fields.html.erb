@@ -1,0 +1,15 @@
+<td class="cell read">
+  <input type="checkbox"
+         id=<%= rec.id %>
+         name='checkBox'
+         <%= st & (@receipts.last.id == rec.id) ? "checked" : ""%>
+    />
+</td>
+<td class="cell read"><%= index %></td>
+<td class="cell read"><%= rec.short_name %></td>
+<td class="cell read"><%= rec.join_mt_sp_names%></td>
+<td class="cell read"><%= rec.amount_kg %></td>
+<td class="cell read"><%= rec.note %></td>
+<td class="cell read"><%= rec.sum_s %></td>
+<td class="cell read"><%= rec.volume_cc %></td>
+<td class="cell read"><%= time_ago_in_words rec.updated_at %></td>

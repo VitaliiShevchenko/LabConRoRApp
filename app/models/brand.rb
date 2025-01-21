@@ -11,4 +11,9 @@ class Brand < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     %w[creator brand_receipts]
   end
+
+  def calculated_cost
+    return if brand_receipts.count.zero?
+    brand_receipts.map(&:calculated_cost).sum/brand_receipts.count
+  end
 end

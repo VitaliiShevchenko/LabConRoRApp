@@ -6,12 +6,10 @@
           <div class="row mt--10">
             <button class="btn">BRANDS</button>
             <label class="label-name name">BRAND NAME:</label>
-            <%= form.text_field :name, class: "input-field name" %>
-            <%= form.hidden_field :id %>
+            <span class="brand-receipt" ><%= @brand.name %></span>
+            <span class="brand-receipt" ><%= @brand.description %></span>
             <label class="label-name use">USE:</label>
-            <%= form.text_field :intended_use, class: "input-field use" %>
-            <label class="label-name desc">DESC:</label>
-             <%= form.text_field :description, class: "input-field desc" %>
+            <span class="brand-receipt" ><%= @brand.intended_use %></span>
           </div>
         </div>
       </div>
@@ -25,10 +23,11 @@
             <tr>
               <th>SELECT</th>
               <th>ID</th>
+              <th>RECEIPT NUMBER</th>
               <th>DENSITY</th>
               <th>SHORE A</th>
               <th>SHORE D</th>
-              <th>RECEIPT NUMBER</th>
+              <th>CALCULATED COST</th>
               <th>CREATED</th>
               <th>UPDATED</th>
             </tr>
@@ -49,7 +48,7 @@
             </tr>
           <% end %>
 
-          <%= render 'brand_receipts/new_record', form: form  if @new_record %>
+          <%= render 'brand_receipts/new_record', form: form if @new_record %>
 
           </tbody>
         </table>
@@ -57,17 +56,10 @@
       <% end %>
     </div>
     <footer>
-      <%= button_to "ADD NEW RECEIPT", new_receipt_brand_receipts_url(id:@brand.id), class:"btn", method: :post  %>
-      <div class="form-check-toggle-controller">
-        <%= button_to "EDIT SELECTED RECEIPT", edit_rec_brand_receipts_url(id:@brand_receipts.last),
-                      class:"btn",
-                      method: :post,
-                      disabled: @brand_receipts.count == 0 %>,
-        %>
-      </div>
-      <div class="form-check-toggle-controller">
-        <%= button_to "NEXT TABLE", find_brand_receipts_url(id:@brand_receipts), class:"btn", method: :get %>
-      </div>
+      <%=
+        button_to "ADD NEW RECEIPT", new_receipt_brand_receipts_url(id: @brand.id), class:"btn"  %><%=
+        render 'brand_receipts/shows_EDIT_DELETE_BRAND_RECEIPT_buttons' unless @brand_receipts.empty?
+    %>
       <div class="form-check-toggle-controller">
         <%= button_to "DASHBOARD", :creator_dashboards, class:"btn", method: :get %>
       </div>

@@ -1,0 +1,17 @@
+<td class="cell read">
+  <input type="checkbox"
+         id=<%= rec.id %>
+           name='checkBox'
+         data-action="check-toggle#toggle"
+         data-check-toggle-target="check"
+         checked
+    />
+</td>
+<td class="cell read"><%= rec.id %></td>
+<td class="cell read"><%= form.hidden_field :id, value: rec.id  %></td>
+<td class="cell read"><%= form.text_field :name, value: rec.name  %></td>
+<td class="cell read"><%= form.text_field :intended_use, value: rec.intended_use  %></td>
+<td class="cell read"><%= form.text_field :description, value: rec.description  %></td>
+<td class="cell read"><</td>
+<td class="cell read"><%= rec.created_at %></td>
+<td class="cell read">Time.now</td>

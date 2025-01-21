@@ -33,7 +33,8 @@
             <th>NAME</th>
             <th>DESCRIPTION</th>
             <th>NOTE</th>
-            <th>PRICE</th>
+            <th>PRICE, $/kg</th>
+            <th>DENSITY, g/cc</th>
             <th>AVAILABLE</th>
             <th>CREATED</th>
             <th>UPDATED</th>
@@ -41,11 +42,11 @@
           </thead>
           <tbody data-controller="check-toggle">
           <% @materials.each do |rec|%>
-            <tr data-action="click->check-toggle#clickRow">
-              <%
-                its_readonly_row = @material || @update_record&.id != rec.id
-                st = @update_record.nil? & @user_pushed_add_new.nil?
-              %>
+            <%
+              its_readonly_row = @material || @update_record&.id != rec.id
+              st = @update_record.nil? & @user_pushed_add_new.nil?
+            %>
+            <tr data-action=<%= "click->check-toggle#clickRow" if its_readonly_row %>>
               <%=
                 if its_readonly_row
                   render 'materials/output_readonly_fields', rec: rec, materials: @materials, st:

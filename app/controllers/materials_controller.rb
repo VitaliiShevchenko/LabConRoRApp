@@ -43,9 +43,13 @@ class MaterialsController < ApplicationController
   def update
     update_record = Material.find(params[:id])
     update_record.update(material_params)
-    @supplier = update_record.supplier
-    @materials = @supplier.material
-    render :index
+    if update_record.save
+      @supplier = update_record.supplier
+      @materials = @supplier.material
+      render :index
+    else
+      flash[:alert] = update_record.errors.full_messages
+    end
   end
 
   def destroy
@@ -59,6 +63,6 @@ class MaterialsController < ApplicationController
   private
 
   def material_params
-    params.require(:material).permit(:id, :name, :supplier_id, :description, :note, :available, :price)
+    params.require(:material).permit(:id, :name, :supplier_id, :description, :note, :available, :price, :density)
   end
 end
