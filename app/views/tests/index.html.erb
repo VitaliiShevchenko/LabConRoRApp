@@ -1,0 +1,74 @@
+<main class="container">
+  <%= turbo_frame_tag "creator_dashboard_turbo_frame" do %>
+
+      <%= form_with model: @brand_receipt.brand, url: find_brand_receipts_path(id: @brand_receipt.brand.id ), method: :post do |form| %>
+      <div class="d-flex input-form-brand">
+        <div class="side full">
+          <div class="row mt--10">
+            <button class="btn">RECEIPTS</button>
+            <label class="label-name name">BRAND RECEIPT:</label>
+            <span class="brand-receipt" ><%= "#{@brand_receipt.brand.name} ##{@brand_receipt.receipt_num}" %></span>
+            <span class="brand-receipt" ><%= @brand_receipt.brand.description %></span>
+            <label class="label-name use">USE:</label>
+            <span class="brand-receipt" ><%= @brand_receipt.brand.intended_use %></span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="panel-tbl-brands">
+      <%
+        model = @update_record || @test || @tests
+        url =  tests_path
+        url =  tests_path(id:@update_record) if @update_record
+        method = :put if @update_record
+      %>
+      <%= form_with model: , url: , method:  do |form| %>
+        <table>
+          <thead>
+            <tr>
+              <% columns = %w[select test-No dyn-stab total-time total-energy total-energy-per-sec weight-sample-gr
+              load-n rot-speed mid-temp-molds temperature notation
+              color1 color2 color3 color4
+              torque1 time1 torque2 time2 torque3 time3 torque4 time4
+               melting-time start-melting end-melting mid-voltage mid-current mid-frequency mid-power
+               created_at updated_at] %>
+              <% columns.each do |column| %>
+                <th style="text-transform: uppercase"><%= column %></th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody data-controller="check-toggle">
+          <% @tests.each.with_index(1) do |rec, index| %>
+            <tr data-action="click->check-toggle#clickRow">
+              <%
+                its_readonly_row = @test || @update_record&.id != rec.id
+                st = @update_record.nil? & @user_pushed_add_new.nil?
+              %>
+              <%=
+                if its_readonly_row
+                  render 'tests/output_readonly_fields', rec:, tests: @tests, st:, index:
+                else
+                  render 'tests/output_update_fields', rec: , form: , index:
+                end
+              %>
+            </tr>
+          <% end %>
+
+          <%= render( 'tests/add_row_new_test', form: ) if @user_pushed_add_new %>
+
+          </tbody>
+        </table>
+        <%= form.submit if @user_pushed_add_new || @update_record %>
+      <% end %>
+    </div>
+    <footer>
+      <%=
+        button_to "ADD NEW TEST", add_new_tests_path(id: @brand_receipt.id), class:"btn", method: :post   %><%=
+        render 'tests/shows_EDIT_DELETE_TESTS_buttons' unless @tests.empty?
+      %>
+      <div class="form-check-toggle-controller">
+        <%= button_to "DASHBOARD", :creator_dashboards, class:"btn", method: :get %>
+      </div>
+    </footer>
+  <% end %>
+</main>

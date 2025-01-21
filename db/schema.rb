@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_20_182228) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_21_100001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -181,6 +181,21 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_20_182228) do
     t.float "te_persec"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "test_num"
+    t.float "weight_sample_gr"
+    t.integer "load_n"
+    t.integer "rot_speed"
+    t.float "mid_voltage"
+    t.float "mid_current"
+    t.float "mid_frequency"
+    t.float "mid_power"
+    t.float "mid_temp_molds"
+    t.string "note"
+    t.string "color1"
+    t.string "color2"
+    t.string "color3"
+    t.string "color4"
+    t.float "dyn_stab"
     t.index ["brand_receipt_id"], name: "index_tests_on_brand_receipt_id"
     t.index ["creator_id"], name: "index_tests_on_creator_id"
   end

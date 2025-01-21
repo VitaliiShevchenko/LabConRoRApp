@@ -16,3 +16,7 @@
 <div class="form-check-toggle-controller">
   <%= button_to "NEXT RECEIPT's TABLE", find_receipts_url(brand_receipt_id: @brand_receipts.last), class:"btn" %>
 </div>
+
+<div class="form-check-toggle-controller">
+  <%= button_to "TABLE TESTS", find_tests_url(brand_receipt_id: @brand_receipts.last), class:"btn" %>
+</div>

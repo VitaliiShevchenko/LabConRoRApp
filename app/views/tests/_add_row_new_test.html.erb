@@ -1,0 +1,39 @@
+<tr>
+  <%= form.hidden_field :brand_receipt_id, class:"input-cell" %>
+
+  <td class="cell center">*</td>
+  <% item = ( @tests&.last&.test_num || 0 ) + 1 %>
+  <td class="cell read"><%= item %></td>
+  <%= form.hidden_field :test_num, class:"input-cell", value:item %>
+  <td class="cell" ><%= form.text_field :dyn_stab, class:"input-cell", style:"background-color: #feefae" %></td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell"><%= form.text_field :note, class:"input-cell", style:"background-color: #feefae "%></td>
+  <td class="cell"><%= form.text_field :color1, class:"input-cell", style:"background-color: #feefae"  %></td>
+  <td class="cell"><%= form.text_field :color2, class:"input-cell", style:"background-color: #feefae"  %></td>
+  <td class="cell"><%= form.text_field :color3, class:"input-cell", style:"background-color: #feefae"  %></td>
+  <td class="cell"><%= form.text_field :color4, class:"input-cell", style:"background-color: #feefae"  %></td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">0</td>
+  <td class="cell read">*</td>
+  <td class="cell read">*</td>
+</tr>

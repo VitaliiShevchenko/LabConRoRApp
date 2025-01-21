@@ -1,0 +1,44 @@
+<tr>
+<td class="cell read">
+  <input type="checkbox"
+         id=<%= rec.id %>
+         name='checkBox'
+         checked
+    />
+</td>
+
+  <%= form.hidden_field :brand_receipt_id, class:"input-cell" %>
+
+  <td class="cell read"><%= form.text_field :test_num, value: rec.test_num, class:"input-cell"  %></td>
+  <td class="cell"><%= form.text_field :dyn_stab, class:"input-cell" %></td>
+  <td class="cell read"><%= rec.total_time%></td>
+  <td class="cell read"><%= rec.total_energy %></td>
+  <td class="cell read"><%= rec.te_persec %></td>
+  <td class="cell read"><%= rec.weight_sample_gr %></td>
+  <td class="cell read"><%= rec.load_n %></td>
+  <td class="cell read"><%= rec.rot_speed %></td>
+  <td class="cell read"><%= rec.mid_temp_molds %></td>
+  <td class="cell read"><%= rec.temperature %></td>
+  <td class="cell"><%= form.text_field :note, class:"input-cell" %></td>
+  <td class="cell"><%= form.text_field :color1, class:"input-cell" %></td>
+  <td class="cell"><%= form.text_field :color2, class:"input-cell" %></td>
+  <td class="cell"><%= form.text_field :color3, class:"input-cell" %></td>
+  <td class="cell"><%= form.text_field :color4, class:"input-cell" %></td>
+  <td class="cell read"><%= rec.torque1 %></td>
+  <td class="cell read"><%= rec.time1 %></td>
+  <td class="cell read"><%= rec.torque2 %></td>
+  <td class="cell read"><%= rec.time2 %></td>
+  <td class="cell read"><%= rec.torque3 %></td>
+  <td class="cell read"><%= rec.time3 %></td>
+  <td class="cell read"><%= rec.torque4 %></td>
+  <td class="cell read"><%= rec.time4 %></td>
+  <td class="cell read"><%= rec.melting_time %></td>
+  <td class="cell read"><%= rec.start_melting %></td>
+  <td class="cell read"><%= rec.end_melting %></td>
+  <td class="cell read"><%= rec.mid_voltage %></td>
+  <td class="cell read"><%= rec.mid_current %></td>
+  <td class="cell read"><%= rec.mid_frequency %></td>
+  <td class="cell read"><%= rec.mid_power %></td>
+  <td class="cell read"><%= rec.created_at %></td>
+  <td class="cell read"><%= time_ago_in_words rec.updated_at %></td>
+</tr>

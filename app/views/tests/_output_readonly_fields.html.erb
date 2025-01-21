@@ -1,0 +1,40 @@
+<td class="cell read">
+  <input type="checkbox"
+         id=<%= rec.id %>
+         name='checkBox'
+         <%= st & (@tests.last == rec) ? "checked" : ""%>
+    />
+</td>
+
+<td class="cell read"><%= rec.test_num %></td>
+<td class="cell read"><%= rec.dyn_stab %></td>
+<td class="cell read"><%= rec.total_time%></td>
+<td class="cell read"><%= rec.total_energy %></td>
+<td class="cell read"><%= rec.te_persec %></td>
+<td class="cell read"><%= rec.weight_sample_gr %></td>
+<td class="cell read"><%= rec.load_n %></td>
+<td class="cell read"><%= rec.rot_speed %></td>
+<td class="cell read"><%= rec.mid_temp_molds %></td>
+<td class="cell read"><%= rec.temperature %></td>
+<td class="cell read"><%= rec.note %></td>
+<td class="cell read"><%= rec.color1 %></td>
+<td class="cell read"><%= rec.color2 %></td>
+<td class="cell read"><%= rec.color3 %></td>
+<td class="cell read"><%= rec.color4 %></td>
+<td class="cell read"><%= rec.torque1 %></td>
+<td class="cell read"><%= rec.time1 %></td>
+<td class="cell read"><%= rec.torque2 %></td>
+<td class="cell read"><%= rec.time2 %></td>
+<td class="cell read"><%= rec.torque3 %></td>
+<td class="cell read"><%= rec.time3 %></td>
+<td class="cell read"><%= rec.torque4 %></td>
+<td class="cell read"><%= rec.time4 %></td>
+<td class="cell read"><%= rec.melting_time %></td>
+<td class="cell read"><%= rec.start_melting %></td>
+<td class="cell read"><%= rec.end_melting %></td>
+<td class="cell read"><%= rec.mid_voltage %></td>
+<td class="cell read"><%= rec.mid_current %></td>
+<td class="cell read"><%= rec.mid_frequency %></td>
+<td class="cell read"><%= rec.mid_power %></td>
+<td class="cell read"><%= rec.created_at %></td>
+<td class="cell read"><%= time_ago_in_words rec.updated_at %></td>

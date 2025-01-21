@@ -1,0 +1,16 @@
+<div class="form-check-toggle-controller">
+  <%= button_to "EDIT SELECTED TEST", edit_rec_tests_url(id: @tests.last),
+                class:"btn",
+                method: :post
+  %>
+</div>
+<div class="form-check-toggle-controller">
+  <%= button_to "DELETE SELECTED TEST", tests_url(id: @tests.last),
+                class:"btn",
+                data: { turbo_confirm: "\nDelete selected material?\n\n Are you sure?" },
+                method: :delete
+  %>
+</div>
+<div class="form-check-toggle-controller">
+  <%= button_to "EXAMINATIONS", find_examinations_url(brand_receipt_id: @tests.last), class:"btn" %>
+</div>
