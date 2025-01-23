@@ -7,6 +7,8 @@ gem "rails", "~> 7.2"
 gem 'activeadmin', '~> 3.2', '>= 3.2.5'
 # Gem for handling Serial port (USB)
 gem 'ccutrer-serialport'
+# Create beautiful JavaScript charts
+gem 'chartkick', '~> 5.1', '>= 5.1.2'
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.9', '>= 4.9.4'
 # Use postgresql as the database for Active Record
@@ -21,6 +23,9 @@ gem 'rmodbus', '~> 2.1', '>= 2.1.3'
 gem "turbo-rails"
 # This gems integrates the C implementation of SASS, LibSASS into the asset pipeline.
 gem 'sassc-rails', '~> 2.1', '>= 2.1.2'
+gem 'redis'
+gem 'sidekiq-scheduler'
+gem 'sidekiq'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 # The original asset pipeline for Rails
