@@ -1,4 +1,6 @@
-PORT        = '/dev/ttyACM1'
+require Rails.root.join('lib/testing_machine')
+
+PORT        = '/dev/ttyACM0'
 BAUD_RATE   = 115200
 FIRST_SLAVE = 1
 

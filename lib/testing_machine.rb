@@ -34,9 +34,10 @@ class TestingMachine
   end
 
   def stop
-    @state = :off
+    return if @state == :off
+
     @cl_with_slave.write_holding_registers(ADDRESS[:start_stop], [ 0 ])
-    @client.close
+    @state = :off
   end
 
   def measured_parameters
@@ -45,7 +46,6 @@ class TestingMachine
     MONITORING_ADDRESSES.each do |key, hsh|
       hash[key] = @cl_with_slave.read_holding_register(hsh[:value]) / hsh[:cf]
     end
-    @client.close
 
     hash
   end
