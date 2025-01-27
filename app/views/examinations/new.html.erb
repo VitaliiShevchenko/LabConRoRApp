@@ -1,17 +1,21 @@
 <main class="container">
   <%= turbo_frame_tag "creator_dashboard_turbo_frame" do %>
 
-<%= form_with model: @test, url: examinations_path do |form| %>
 <div class="container">
-  <div class="left_panel">
+<div class="left_panel" data-controller="start" >
     <div class="circle"></div>
-    <button class="btn-impo">START</button>
-    <button class="btn-impo">STOP</button>
+  <!--div>
+    <%= button_to "START", :start_examinations, class:"btn-impo", method: :get %>
+  </div-->
+    <button class="btn-impo" data-action="start#start">START</button>
+    <button class="btn-impo" data-action="start#finish">STOP</button>
     <button class="btn-impo">^</button>
     <button class="btn-impo">|</button>
     <button class="btn-impo">>0<</button>
     <button class="btn-impo">PRINTER</button>
   </div>
+
+  <%= form_with model: @test, url: examinations_path do |form| %>
     <div class="right-container">
     <div class="upper_panel">
         <div class="box">
@@ -20,14 +24,14 @@
         </div>
         <div class="box">
             <label>Time trial, s</label>
-            <%= form.text_field :total_time, class: 'inp' %>
+            <%= form.text_field :total_time, class: 'inp', value: ExaminationsController::DEFAULT_TIME_TRIAL %>
         </div>
         <div class="box mt8">
           <span class="inp" ><%= "#{@brand_receipt.brand.name} ##{@brand_receipt.receipt_num}" %></span>
         </div>
       <div class="box">
         <label>Weight sample, gr</label>
-          <%= form.text_field :weight_sample_gr, class: 'inp' %>
+          <%= form.text_field :weight_sample_gr, class: 'inp', value: ExaminationsController::DEFAULT_WEIGHT_SAMPLE %>
       </div>
         <div class="box">
           <label>Load, N</label>
@@ -40,10 +44,11 @@
       <div class="box">
         <label>Test number</label>
         <%= form.text_field :test_num, class: 'inp' %>
+        <%= form.hidden_field :id, class: 'inp', value: @test.id %>
       </div>
     </div>
-    <div class="main_panel">
-
+    <div class="main_panel" >
+      <canvas id="myChart" width="400" height="200" data-controller="chart"></canvas>
     </div>
     <div class="lower_panel">
         <table>
@@ -94,6 +99,7 @@
         </table>
     </div>
   </div>
+  <% end %>
     <div class="right_panel">
     <button class="btn-impo">Previous Tests</button>
     <button class="btn-impo">Open DB</button>
@@ -105,5 +111,4 @@
 </div>
 <% end %>
 
-  <% end %>
 </main>
