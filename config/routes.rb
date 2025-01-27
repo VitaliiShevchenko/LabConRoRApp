@@ -96,6 +96,10 @@ Rails.application.routes.draw do
       post :edit_rec
       post :add_new
       get  :index
+      get  :start
+      get  :finish
+      get  :chart_update
+      get  :data
     end
   end
 
