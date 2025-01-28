@@ -3,13 +3,10 @@
 
 <div class="container">
 <div class="left_panel" data-controller="start" >
-    <div class="circle"></div>
-  <!--div>
-    <%= button_to "START", :start_examinations, class:"btn-impo", method: :get %>
-  </div-->
+    <div class="circle" id='led'></div>
     <button class="btn-impo" data-action="start#start">START</button>
     <button class="btn-impo" data-action="start#finish">STOP</button>
-    <button class="btn-impo">^</button>
+    <button class="btn-impo" data-action="start#continue">CONTINUE</button>
     <button class="btn-impo">|</button>
     <button class="btn-impo">>0<</button>
     <button class="btn-impo">PRINTER</button>
@@ -45,6 +42,10 @@
         <label>Test number</label>
         <%= form.text_field :test_num, class: 'inp' %>
         <%= form.hidden_field :id, class: 'inp', value: @test.id %>
+      </div>
+      <div class="box">
+      <label>SCLK</label>
+        <%= form.number_field :sck, class: 'inp' , value: 0, in: 0..1000000 %>
       </div>
     </div>
     <div class="main_panel" >

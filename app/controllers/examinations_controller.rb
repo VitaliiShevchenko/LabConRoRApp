@@ -1,4 +1,5 @@
 class ExaminationsController < ApplicationController
+  include ExaminationsHelper
   DEFAULT_TIME_TRIAL = 10
   DEFAULT_WEIGHT_SAMPLE = 30
 
@@ -12,52 +13,43 @@ class ExaminationsController < ApplicationController
   end
 
   def data
-    set_current_test_id
-    data_points = DataFlow.where(test_id: current_test_id).order(:testing_time)
-    render json: ([
-      data_points.pluck(:torque),
-      data_points.pluck(:speed),
-      data_points.pluck(:mold_temp),
-      data_points.pluck(:material_temp),
-      data_points.pluck(:voltage),
-      data_points.pluck(:current),
-      data_points.pluck(:frequency),
-      data_points.pluck(:power),
-      data_points.pluck(:energy),
-      data_points.pluck(:alarm),
-      data_points.pluck(:testing_time)
-    ]).to_json
+    render json: consistent_data_points(current_test_id)
   end
 
   def chart_update
-    if testing_time >= trial_time
-      TESTING_MACHINE.stop
-    else
-      row = DataFlow.find_by(test_id: current_test_id, testing_time: testing_time)
-      measured_parameters = TESTING_MACHINE.measured_parameters
-      unless measured_parameters.empty?
-        measured_parameters[:testing_time] = testing_time
-        row.update measured_parameters
-
-        UpdateChartJob.perform_now(current_test_id)
-        increment_testing_time
-      end
+           testing_time = TESTING_MACHINE.serial_clock
+    measured_parameters = TESTING_MACHINE.measured_parameters
+    if measured_parameters.present?
+      answer = [measured_parameters[:testing_time] , testing_time]
+      measured_parameters[:testing_time] = testing_time
+      DataFlow.find_by(test_id: current_test_id, testing_time:).update measured_parameters
+      UpdateChartsJob.perform_now(current_test_id)
     end
 
-    head :ok
+    render json: answer
   end
 
   def start
-    # return finish if test_exist?
+    # return continue if test_exist?
+    trial_time = params[:time_trial].to_i
 
     set_current_test_id # test_id = 17
-    set_trial_time trial_time = params[:time_trial].to_i
     create_data_area trial_time unless test_exist?
 
-    set_testing_time 0
+    TESTING_MACHINE.set_trial_time trial_time
+    TESTING_MACHINE.set_time_from  0
     TESTING_MACHINE.start
+    head :ok
+  end
 
-    index
+  def continue
+    finish unless current_test_id == params[:test_id]
+    head :ok if params[:sck].to_i.zero?
+
+    TESTING_MACHINE.set_trial_time params[:time_trial].to_i
+    TESTING_MACHINE.set_time_from params[:sck].to_i
+    TESTING_MACHINE.start
+    head :ok
   end
 
   def finish
@@ -107,7 +99,7 @@ class ExaminationsController < ApplicationController
   end
 
   def create_data_area(size)
-    size.times { |i| DataFlow.create test_id: current_test_id, testing_time: i }
+    (1 + size).times { |i| DataFlow.create test_id: current_test_id, testing_time: i }
   end
 
   def set_trial_time(trial_time)

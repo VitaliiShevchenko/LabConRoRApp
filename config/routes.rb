@@ -100,6 +100,7 @@ Rails.application.routes.draw do
       get  :finish
       get  :chart_update
       get  :data
+      get  :continue
     end
   end
 
