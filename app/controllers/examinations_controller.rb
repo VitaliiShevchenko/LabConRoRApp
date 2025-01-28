@@ -35,12 +35,13 @@ class ExaminationsController < ApplicationController
     else
       row = DataFlow.find_by(test_id: current_test_id, testing_time: testing_time)
       measured_parameters = TESTING_MACHINE.measured_parameters
-      puts measured_parameters[:testing_time]
-      measured_parameters[:testing_time] = testing_time
-      row.update measured_parameters
+      unless measured_parameters.empty?
+        measured_parameters[:testing_time] = testing_time
+        row.update measured_parameters
 
-      UpdateChartJob.perform_now(current_test_id)
-      increment_testing_time
+        UpdateChartJob.perform_now(current_test_id)
+        increment_testing_time
+      end
     end
 
     head :ok
