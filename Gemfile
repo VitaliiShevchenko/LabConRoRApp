@@ -71,6 +71,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "rspec-rails", "~> 7.0.1"
   gem "web-console"
+  gem 'dotenv', '~> 2.8'                                      # Loads environment variables from `.env`.
 end
 
 group :test do

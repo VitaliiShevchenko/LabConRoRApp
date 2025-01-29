@@ -2,6 +2,9 @@ require_relative "boot"
 
 require "rails/all"
 
+# Load dotenv before other configurations
+require 'dotenv/load' if Rails.env.development? || Rails.env.test?
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -23,5 +26,14 @@ module LabConRoRApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    port_env_file = File.expand_path("~/.serial_port_env")
+
+    if File.exist?(port_env_file)
+      Dotenv.load port_env_file
+      puts "Using detected serial port: #{ENV['SERIAL_PORT']}"
+    else
+      puts "No detected serial port found. Using default configuration."
+    end
   end
 end
