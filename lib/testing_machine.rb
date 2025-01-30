@@ -1,5 +1,6 @@
 class TestingMachine
   PIN_CODE = 2024
+  TRIAL_TIME = 600
   ADDRESS =
     {
       start_stop:           0x0000, # Command for starting/stopping the process
@@ -25,6 +26,10 @@ class TestingMachine
     @state = :off
     @client = ModBus::RTUClient.new port, baud_rate
     @cl_with_slave = @client.with_slave id
+    @serial_clock = 0
+    @trial_time = TRIAL_TIME
+
+    @cl_with_slave.write_holding_register(ADDRESS[:delay_turn_off], 20) # temporary
   end
 
   def start
@@ -34,30 +39,61 @@ class TestingMachine
   end
 
   def stop
-    return if @state == :off
-
-    @cl_with_slave.write_holding_registers(ADDRESS[:start_stop], [ 0 ])
+    @cl_with_slave.write_holding_registers(ADDRESS[:start_stop], [ 0 ]) if @measure == :off
     @state = :off
   end
 
   def measured_parameters
-    return {} if @state == :off
+    @measure = :on
     hash = {}
     MONITORING_ADDRESSES.each do |key, hsh|
       hash[key] = @cl_with_slave.read_holding_register(hsh[:value]) / hsh[:cf]
     end
+    @measure = :off
+    increment_serial_clock
+    self.stop if time_up?
 
     hash
   end
 
+  def set_trial_time(time)
+    @trial_time = time
+  end
+
+  def serial_clock
+    @serial_clock
+  end
+
+  def set_time_from(time)
+    set_serial_clock time
+  end
+
   private
+
+  def set_serial_clock(time = 0)
+    @serial_clock = time
+  end
+
+  def increment_serial_clock
+    @serial_clock += 1
+  end
 
   def kill_error
     @cl_with_slave.write_holding_register(MONITORING_ADDRESSES[:alarm][:value], 0)
   end
 
   def launch
-    @cl_with_slave.write_holding_register(ADDRESS[:delay_turn_off], 20) # temporary
     @cl_with_slave.write_holding_register(ADDRESS[:start_stop], PIN_CODE)
+  end
+
+  def is_canceled?
+    return false if @state == :on
+
+    @cl_with_slave.write_holding_registers(ADDRESS[:start_stop], [ 0 ])
+    true
+  end
+
+  def time_up?
+    @serial_clock >= @trial_time
   end
 end
