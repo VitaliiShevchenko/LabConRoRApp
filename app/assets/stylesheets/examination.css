@@ -63,6 +63,7 @@ table thead, th {
     margin: 25px 0;
     box-shadow: 2px 2px 7px black;
     transition: .3s;
+    padding: 0;
 }
 
 .left_panel .btn-impo:hover {
@@ -83,6 +84,7 @@ table thead, th {
     margin: 25px 0;
     box-shadow: 2px 2px 7px black;
     transition: .3s;
+    padding: 0;
 }
 
 .right_panel .btn-impo:hover {
