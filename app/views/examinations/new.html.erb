@@ -7,12 +7,12 @@
     <button class="btn-impo" data-action="start#start">START</button>
     <button class="btn-impo" data-action="start#finish">STOP</button>
     <button class="btn-impo" data-action="start#continue">CONTINUE</button>
-    <button class="btn-impo">|</button>
+    <button class="btn-impo">Find times & torques</button>
     <button class="btn-impo">>0<</button>
-    <button class="btn-impo">PRINTER</button>
+    <button class="btn-impo">PRINT</button>
   </div>
 
-  <%= form_with model: @test, url: examinations_path do |form| %>
+  <%= form_with model: @test, url: tests_path(id: @test.id), method: :put do |form| %>
     <div class="right-container">
     <div class="upper_panel">
         <div class="box">
@@ -51,6 +51,7 @@
     <div class="main_panel" >
       <canvas id="myChart" width="400" height="200" data-controller="chart"></canvas>
     </div>
+
     <div class="lower_panel">
         <table>
             <thead>
@@ -71,7 +72,7 @@
                     <td><%= form.text_field :time1,   class: 'cell' %></td>
                     <td><%= form.text_field :torque2, class: 'cell ' %></td>
                     <td><%= form.text_field :time2,   class: 'cell' %></td>
-                    <td><%= form.text_field :torque2, class: 'cell ' %></td>
+                    <td><%= form.text_field :torque3, class: 'cell ' %></td>
                     <td><%= form.text_field :time3,   class: 'cell' %></td>
                     <td><%= form.text_field :torque4, class: 'cell ' %></td>
                     <td><%= form.text_field :time4,   class: 'cell' %></td>
@@ -99,14 +100,16 @@
             </tbody>
         </table>
     </div>
+      <%= form.submit "SAVE CHART AND DATA TABLES" , class:"btn"%>
   </div>
   <% end %>
-    <div class="right_panel">
-    <button class="btn-impo">Previous Tests</button>
-    <button class="btn-impo">Open DB</button>
+  <div class="right_panel">
+    <button class="btn-impo">Previous Test</button>
+    <button class="btn-impo">Open DataFlow</button>
     <button class="btn-impo">Settings</button>
-    <button class="btn-impo">?</button>
-    <button class="btn-impo">Save to DB</button>
+    <button class="btn-impo">AI analyzing</button>
+    <button class="btn-impo">DASHBOARD</button>
+
   </div>
 
 </div>
