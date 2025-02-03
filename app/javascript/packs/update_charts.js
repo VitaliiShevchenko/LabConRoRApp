@@ -1,5 +1,4 @@
 export default function updateCharts(data) {
-    console.log("vhod")
     const fields = {
         torque: 0,
         speed: 1,
@@ -19,5 +18,4 @@ export default function updateCharts(data) {
         chart.data.datasets[fields[key]].data = data[fields[key]]
     }
     chart.update();
-    console.log("chart must updated")
 }
