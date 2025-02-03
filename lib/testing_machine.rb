@@ -4,11 +4,13 @@ class TestingMachine
   ADDRESS =
     {
       start_stop:           0x0000, # Command for starting/stopping the process
-      delay_turn_off:       0x2009  # the motor shuts down if the current/voltage is close to zero, s
+      set_max_torque:       0x2003,  # Setting the maximum torque for the device, Ndm
+      delay_turn_off:       0x2009,  # the motor shuts down if the current/voltage is close to zero, s
+      set_torque_range:     0x200A   # Set torque calibration range,*1(Nm)|*10(Ndm)|*100(Ncm)", default 9656*1.9813=19131
     }
   MONITORING_ADDRESSES =
     {
-      torque:              { value: 0x4000, cf: 1 }, # Store current torque of process, Nm
+      torque:              { value: 0x4000, cf: 1 }, # Store current torque of process, Ndm
       speed:               { value: 0x4001, cf: 1 }, # Store current speed of the mixe, rot/min
       mold_temp:           { value: 0x4002, cf: 1 }, # Store current mold temperature, °C
       material_temp:       { value: 0x4003, cf: 1 }, # Store current mix material temperature, °C
@@ -29,7 +31,9 @@ class TestingMachine
     @serial_clock = 0
     @trial_time = TRIAL_TIME
 
-    @cl_with_slave.write_holding_register(ADDRESS[:delay_turn_off], 20) # temporary
+    @cl_with_slave.write_holding_register(ADDRESS[:delay_turn_off], 600) # temporary
+    @cl_with_slave.write_holding_register(ADDRESS[:set_torque_range], 9585) # 19131/1.99583333
+    @cl_with_slave.write_holding_register(ADDRESS[:set_max_torque], 1000)
   end
 
   def start
@@ -39,7 +43,7 @@ class TestingMachine
   end
 
   def stop
-    @cl_with_slave.write_holding_registers(ADDRESS[:start_stop], [ 0 ]) if @measure == :off
+    @cl_with_slave.write_holding_register(ADDRESS[:start_stop], 0) if @measure == :off
     @state = :off
   end
 
