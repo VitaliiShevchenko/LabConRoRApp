@@ -69,6 +69,9 @@
       <div class="form-check-toggle-controller">
         <%= button_to "DASHBOARD", :creator_dashboards, class:"btn", method: :get %>
       </div>
+      <div class="form-check-toggle-controller">
+        <%= button_to "TORQUES ANALYZING",  torques_analyzing_examinations_url(id: @brand_receipt.id), class:"btn" %>
+      </div>
     </footer>
   <% end %>
 </main>
