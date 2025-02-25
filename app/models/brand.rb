@@ -14,6 +14,6 @@ class Brand < ApplicationRecord
 
   def calculated_cost
     return if brand_receipts.count.zero?
-    brand_receipts.map(&:calculated_cost).sum/brand_receipts.count
+    brand_receipts.sum(:calculated_cost)/brand_receipts.count
   end
 end
