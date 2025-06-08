@@ -25,3 +25,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+COMMANDS:
+1.  source ~/.rvm/scripts/rvm
+2.  ./bin/start_server.sh
