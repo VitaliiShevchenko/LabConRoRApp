@@ -101,6 +101,7 @@ Rails.application.routes.draw do
       get  :chart_update
       get  :data
       get  :continue
+      post :torques_analyzing
     end
   end
 

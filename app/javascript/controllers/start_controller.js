@@ -15,9 +15,9 @@ export default class extends Controller {
 
         const start_url =
             `http://localhost:3000/examinations/start?time_trial=${timeTrialElem.value}&test_id=${testIDElem.value}`
-        fetch(start_url, { method: `GET` });
-
-    this.run_update(sckElem, timeTrialElem, ledElem)
+        fetch(start_url, { method: `GET` })
+            .then((response)=>{ return response.json()} )
+            .then((data)=> { if (data === "run") this.run_update(sckElem, timeTrialElem, ledElem) })
     }
 
     continue(){
@@ -26,9 +26,9 @@ export default class extends Controller {
         const {sckElem, testIDElem, timeTrialElem, ledElem} = this.getElements()
 
         const url = `http://localhost:3000/examinations/continue?time_trial=${timeTrialElem.value}&test_id=${testIDElem.value}&sck=${sckElem.value}`
-        fetch(url, { method: `GET` });
-
-        this.run_update(sckElem, timeTrialElem, ledElem)
+        fetch(url, { method: `GET` })
+            .then((response)=>{ return response.json()} )
+            .then((data)=> { if (data === "run") this.run_update(sckElem, timeTrialElem, ledElem) })
     }
 
     finish(){
@@ -38,6 +38,8 @@ export default class extends Controller {
     }
 
     run_update(sckElem, timeTrialElem, ledElem){
+        if (Number(sckElem.value) >= Number(timeTrialElem.value)) return
+
         this.intervalID =
             setInterval(() => {
                 fetch('http://localhost:3000/examinations/chart_update', {method: 'GET'})
@@ -50,8 +52,7 @@ export default class extends Controller {
                     })
 
                 if (sckElem.value++ >= Number(timeTrialElem.value)) {
-                    clearInterval(this.intervalID)
-                    this.intervalID = 0
+                    this.finish()
                 }
             }, 1000)
     }
